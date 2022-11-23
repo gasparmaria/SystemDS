@@ -662,3 +662,5 @@ CALL spSelectProdutos('2')
 CALL spCadastrarPedido(1, "descricao", 1, 5);
 CALL spCadastrarPedido(2, "descricao", 2, 5);
 CALL spCadastrarPedido(4, "descricao", 4, 5);
+
+/*AAAAAAAAAAAAAAAAAAAAAAA*/
