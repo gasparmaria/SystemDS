@@ -1,32 +1,47 @@
-﻿@model DragonSushi_ASP.NET.ViewModel.ComandaViewModel
+﻿@model IEnumerable<DragonSushi_ASP.NET.ViewModel.ComandaViewModel>
 
-@{ ViewBag.Title = "DetalhesComanda"; }
-
+@{ ViewBag.Title = "DetalhesComanda";}
 <section class="table-info">
     <div class="table-info__top">
         <h1 class="table-info__title">01</h1>
         <p class="table-info__number-table">mesa X</p>
-        <h1 class="table-info__title">@Html.DisplayFor(model => model.Comanda.idComanda)</h1>
-        <p class="table-info__number-table">@Html.DisplayFor(model => model.Comanda.numMesa)</p>
-        <ul class="table-info__list">
 
-            <li class="table-info_list_item">
-                <span class="table-info_listitem_amount"> @Html.DisplayFor(model => model.Pedido.qtdProd) </ span >  @Html.DisplayFor(model => model.Pedido.fkProd);
-            </li>
+        @foreach (var item in Model)
+        {
+     
+           <h1>@item.Comanda.idComanda;</h1> 
+           <h2>@item.Comanda.numMesa;</h2>
+            if (@item.Comanda.idComanda == @item.Comanda.idComanda) {
+                break;
+            }
 
-        </ul>
-    </div>
-    <div class="table-info__bottom">
+
+        }
+
+        @foreach (var item in Model)
+        {
+
+            <ul class="table-info__list">
+
+                <li class="table-info_list_item">
+                    <span class="table-info_listitem_amount"> @item.Pedido.qtdProd </span> @item.Pedido.fkProd;
+                </li>
+
+            </ul>
+        }
+
+        </div >
+        <div class="table-info__bottom">
         <div class="table-info__price-note">
             <p class="table-info_prince-note_subtotal"><span class="accent-text">Subtotal:</span> R$0</p>
             <p class="table-info_prince-note_service-charge"><span class="accent-text">Taxa de serviço:</span> R$10,00</p>
             <p class="table-info_prince-note_total"><span class="accent-text total">Total:</span> R$0</p>
         </div>
         <div class="table-info__price-options">
-            <a href=""><iconify-icon icon="carbon:send-alt-filled"></iconify-icon></a>
-            <a href=""><iconify-icon icon="ci:edit"></iconify-icon></a>
+            <a href="">< iconify - icon icon="carbon:send-alt-filled"></iconify-icon></a>
+            <a href="">< iconify - icon icon="ci:edit"></iconify-icon></a>
             @*<a href="~/Pedido/LancarPedido/@model.Comanda.idComanda"><iconify-icon icon="carbon:send-alt-filled"></iconify-icon></a>
-                <a href="~/Comanda/EditarComanda/@model.Comanda.idComanda"><iconify-icon icon="ci:edit"></iconify-icon></a>*@
+            <a href="~/Comanda/EditarComanda/@model.Comanda.idComanda"><iconify-icon icon="ci:edit"></iconify-icon></a>*@
             <a href=""><iconify-icon icon="fa-solid:dollar-sign"></iconify-icon></a>
         </div>
     </div>

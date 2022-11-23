@@ -79,7 +79,8 @@ namespace DragonSushi_ASP.NET.DAO
                     //subtotal = total,
                     Comanda = new Comanda()
                     {
-                        idComanda = Convert.ToInt32(leitor["fkComanda"])
+                        idComanda = Convert.ToInt32(leitor["fkComanda"]),
+                        numMesa = Convert.ToInt32(leitor["numMesa"])
 
                     },
                     Pedido = new Pedido()
