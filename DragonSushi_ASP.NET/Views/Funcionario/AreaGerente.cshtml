@@ -1,0 +1,21 @@
+﻿@{ ViewBag.Title = "AreaGerente"; }
+
+
+<main class="manager_page">
+    <div class="manager_container">
+        <h1 class="manager_title">ÁREA DO GERENTE</h1>
+
+        <ul class="manager_page_ul_list">
+            <div class="manager_list">
+            <li class="manager_page_li_list">@Html.ActionLink("CADASTRO DE PRODUTO", "CadastrarProduto", "Produto")</li>
+            <li class="manager_page_li_list">@Html.ActionLink("CADASTRO DE FUNCIONÁRIO", "CadastrarFuncionario", "Funcionario")</li>
+            <li class="manager_page_li_list">@Html.ActionLink("ESTOQUE", "MostrarEstoque", "Produto")</li>
+    </div>
+    </ul>
+    </div>
+
+    <img class="img_manager_container" src="~/images/themes/manager-working.png">
+
+    <hr class="line_under_image">
+</main>
+

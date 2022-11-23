@@ -1,0 +1,99 @@
+﻿@model DragonSushi_ASP.NET.ViewModel.ProdutoViewModel
+
+@{ ViewBag.Title = "Cadastrar Produto"; }
+
+<body class="product_register-page">
+    <main class="product_register">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <h1 class="form__title">Cadastrar produto</h1>
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Produto.nomeProd, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        @Html.EditorFor(model => model.Produto.nomeProd, new { htmlAttributes = new { @placeholder = "Digite seu nome" } })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Produto.nomeProd, "", new { @class = "text-danger" })
+                </div>
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Produto.descrProd, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        @Html.EditorFor(model => model.Produto.descrProd, new { htmlAttributes = new { @placeholder = "Informe a descrição" } })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Produto.descrProd, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Categoria.categoria, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        @Html.EditorFor(model => model.Categoria.categoria, new { htmlAttributes = new { @placeholder = "Informe a categoria" } })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Categoria.categoria, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form__box">
+                    @Html.LabelFor(model => model.UnMedida.unMedida, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        @Html.EditorFor(model => model.UnMedida.unMedida, new { htmlAttributes = new { @placeholder = "Informe a unidade de medida" } })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.UnMedida.unMedida, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Produto.imgProd, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        @Html.EditorFor(model => model.Produto.imgProd, new { htmlAttributes = new { @placeholder = "Informe a URL da imagem" } })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Produto.imgProd, "", new { @class = "text-danger" })
+                </div>
+
+
+                <div class="form-container-flex">
+                    <div class="checkbox_text">
+                        @Html.CheckBoxFor(model => model.Produto.estoque, htmlAttributes: new { @class = "checkbox_text" }) Estoque
+                    </div>
+
+
+
+                    <div class="checkbox_text">
+                        @Html.CheckBoxFor(model => model.Produto.ingrediente, htmlAttributes: new { @class = "checkbox_text" }) Ingrediente
+                    </div>
+                </div>
+
+
+                <div class="form-container-flex">
+                    <div class="form__box">
+                        @Html.LabelFor(model => model.Produto.preco, htmlAttributes: new { @class = "form_box_label" })
+                        <div class="form_box_input-icon">
+                            @Html.EditorFor(model => model.Produto.preco, new { htmlAttributes = new { @placeholder = "Informe o preço" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Produto.preco, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form__box">
+                        @Html.LabelFor(model => model.Produto.qtdProd, htmlAttributes: new { @class = "form_box_label" })
+                        <div class="form_box_input-icon">
+                            @Html.EditorFor(model => model.Produto.qtdProd, new { htmlAttributes = new { @placeholder = "Informe a quantidade" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Produto.qtdProd, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                 <input type="submit" value="Cadastrar" class="form__button" />            }
+        </div>
+    </main>
+</body>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval"){
+
+    <script>$.validator.methods.number = function (value, element) {
+            console.log('validate');
+            return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:\.\d{3})+)?(?:,\d+)?$/.test(value);
+        }</script>
+    }

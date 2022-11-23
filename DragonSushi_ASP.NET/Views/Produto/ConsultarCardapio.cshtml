@@ -1,0 +1,22 @@
+﻿@model IEnumerable<DragonSushi_ASP.NET.ViewModel.ProdutoViewModel>
+
+@{ ViewBag.Title = "ConsultarCardapio"; }
+
+<h2>ConsultarCardapio</h2>
+
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.Produto.nomeProd</td>
+    <td>@item.Categoria.categoria</td>
+    <td>
+
+    </td>
+</tr>}
+
+</table>

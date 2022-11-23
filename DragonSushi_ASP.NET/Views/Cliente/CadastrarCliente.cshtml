@@ -1,0 +1,44 @@
+﻿@model DragonSushi_ASP.NET.ViewModel.ClienteViewModel
+
+@{ ViewBag.Title = "CadastrarCliente"; }
+
+
+<body class="client_register-page">
+    <main class="client_register">
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+                <h1 class="form__title">Cadastro de cliente</h1>
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Pessoa.nomePessoa, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        @Html.EditorFor(model => model.Pessoa.nomePessoa, new { htmlAttributes = new { @placeholder = "Informe o nome" } })
+
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Pessoa.nomePessoa, "", new { @class = "text-danger" })
+                </div>
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Pessoa.telefone, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        @Html.EditorFor(model => model.Pessoa.telefone, new { htmlAttributes = new { @placeholder = "Informe o telefone" } })
+                        @Html.ValidationMessageFor(model => model.Pessoa.telefone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Pessoa.cpf, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        @Html.EditorFor(model => model.Pessoa.cpf, new { htmlAttributes = new { @placeholder = "Informe o CPF" } })
+                        @Html.ValidationMessageFor(model => model.Pessoa.cpf, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <input type="submit" value="Cadastrar" class="form__button" />            }
+        </div>
+    </main>
+</body>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

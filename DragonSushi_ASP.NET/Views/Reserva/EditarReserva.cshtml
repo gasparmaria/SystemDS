@@ -1,0 +1,159 @@
+﻿@model DragonSushi_ASP.NET.ViewModel.ReservaViewModel
+
+@{
+    ViewBag.Title = "Editar Reserva";
+    Layout = null;
+}
+
+@*<h2>Editar Reserva</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>ReservaViewModel</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Reserva.dataReserva, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Reserva.dataReserva, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Reserva.dataReserva, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Reserva.hora, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Reserva.hora, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Reserva.hora, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Reserva.numPessoas, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Reserva.numPessoas, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Reserva.numPessoas, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pessoa.cpf, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Pessoa.cpf, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Pessoa.cpf, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <meta name="keywords" content="Restaurante, Japonês, Delivery, Sushi, Temaki, ">
+    <meta name="description" content="Faça já seu pedido na Dragon Sushi! Confira nossos pratos, ofertas e muito mais!">
+    <meta name="author" content="Gabriel S. Evangelista, Henrique R. Pereira, Guilherme Ferreira, Gustavo Basilio, Maria Eduarda G. Lima, Guilherme Lemes">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css">
+    <link rel="shortcut icon" type="~/image/x-icon" href="favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!--
+        Fonts: Montserrat, Roboto and Patua One
+        font-family: 'Montserrat', sans-serif;
+          - Font weight: 300, 400, 600 and 700
+        font-family: 'Roboto', sans-serif;
+          - Font weight: 300, 400 and 700
+        font-family: 'Patua One', cursive;
+          - Font weight: 400
+        font-family: 'Open Sans', sans-serif;
+          - Font weight: 300, 400 and 700
+    -->
+
+    <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+    <script defer src="js/jquery-3.6.1.min.js"></script>
+    <script defer src="js/script.js"></script>
+
+    <title>Dragon Sushi - Restaurante Japonês</title>
+</head>
+<body class="sign-up-page">
+    <main class="sign-up">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Reserva.idReserva)
+        <div class="form">
+            <h1 class="form__title">Alterar reserva</h1>
+
+            <div class="form__box">
+                @Html.LabelFor(model => model.Pessoa.nomePessoa, htmlAttributes: new { @class = "form_box_label" })
+                <div class="form_box_input-icon">
+                    @Html.EditorFor(model => model.Pessoa.nomePessoa, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Pessoa.nomePessoa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-container-flex">
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Reserva.dataReserva, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        @Html.EditorFor(model => model.Reserva.dataReserva, new { htmlAttributes = new { @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.Reserva.dataReserva, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Reserva.hora, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        @Html.EditorFor(model => model.Reserva.hora, new { htmlAttributes = new { @type = "time" } })
+                        @Html.ValidationMessageFor(model => model.Reserva.hora, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form__box">
+                @Html.LabelFor(model => model.Reserva.numPessoas, htmlAttributes: new { @class = "form_box_label" })
+                <div class="form_box_input-icon">
+                    @Html.EditorFor(model => model.Reserva.numPessoas, new { htmlAttributes = new { @type = "number" } })
+                    @Html.ValidationMessageFor(model => model.Reserva.numPessoas, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <input type="submit" value="Salvar" class="form__button"/>
+        
+
+
+        </div>
+        }
+
+
+        </main>
+</body>
+</html>

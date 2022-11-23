@@ -1,0 +1,91 @@
+﻿@model DragonSushi_ASP.NET.ViewModel.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <meta name="keywords" content="Restaurante, Japonês, Delivery, Sushi, Temaki, ">
+    <meta name="description" content="Faça já seu pedido na Dragon Sushi! Confira nossos pratos, ofertas e muito mais!">
+    <meta name="author" content="Gabriel S. Evangelista, Henrique R. Pereira, Guilherme Ferreira, Gustavo Basilio, Maria Eduarda G. Lima, Guilherme Lemes">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!--
+        Fonts: Montserrat, Roboto and Patua One
+        font-family: 'Montserrat', sans-serif;
+          - Font weight: 300, 400, 600 and 700
+        font-family: 'Roboto', sans-serif;
+          - Font weight: 300, 400 and 700
+        font-family: 'Patua One', cursive;
+          - Font weight: 400
+        font-family: 'Open Sans', sans-serif;
+          - Font weight: 300, 400 and 700
+    -->
+
+    <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+    <script defer src="js/jquery-3.6.1.min.js"></script>
+    <script defer src="js/script.js"></script>
+
+    <title>Dragon Sushi - Restaurante Japonês</title>
+</head>
+<body class="login-page">
+    <a class="logo" href="/Produto/ConsultarCategoria"><img src="/images/logo.png" alt=""></a>
+    <main class="login">
+        <picture class="background-image">
+            <img src="~/images/login/login-background.png" alt="">
+        </picture>
+
+        <div class="form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.urlRetorno)
+                <h1 class="form__title">Faça login e realize já seu <br class="line-break">pedido</h1>
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        <iconify-icon icon="eva:email-fill"></iconify-icon>
+                        @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @placeholder = "Digite seu e-mail" } })
+                        @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "form_box_label" })
+                    <div class="form_box_input-icon">
+                        <iconify-icon icon="uis:padlock"></iconify-icon>
+                        @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @placeholder = "Digite sua senha" } })
+                        @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-container-flex-button">
+                    <input type="submit" value="Entrar" class="form__button" />
+                </div>
+                <p class="form__paragraph">
+                    Ainda não possui cadastro?
+                    <span class="form_paragraph_accent-text">
+                        @Html.ActionLink("Crie sua conta!", "CadastrarUsuario", "Usuario")
+                    </span>
+                </p>
+            }
+        </div>
+    </main>
+</body>
+</html>

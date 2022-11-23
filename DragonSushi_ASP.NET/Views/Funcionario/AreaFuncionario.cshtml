@@ -1,0 +1,21 @@
+﻿
+@{ ViewBag.Title = "AreaFuncionario"; }
+
+<body>
+    <main class="employee_page">
+        <div class="employee_container">
+            <h1 class="employee_title">ÁREA DO FUNCIONÁRIO</h1>
+
+            <ul class="employee_page_ul_list">
+                <div class="employee_list">
+                <li class="employee_page_li_list">@Html.ActionLink("COMANDAS", "ExibirComanda", "Comanda")</li>
+                <li class="employee_page_li_list">@Html.ActionLink("RESERVAS", "ListarReserva", "Reserva")</li>
+                <li class="employee_page_li_list">@Html.ActionLink("CADASTRO DE CLIENTE", "CadastrarCliente", "Cliente")</li>
+        </div>
+        </ul>
+        </div>
+
+        <img class="img_employee_container" src="~/images/themes/employees-working.png">
+    </main>
+</body>
+

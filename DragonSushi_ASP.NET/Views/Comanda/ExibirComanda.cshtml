@@ -1,0 +1,18 @@
+﻿@model IEnumerable<DragonSushi_ASP.NET.Models.Comanda>
+
+@{ ViewBag.Title = "ExibirComanda"; }
+
+<main class="commands">
+    <div class="container">
+        <section class="number-tables">
+            @foreach (var item in Model)
+            {
+<a href="~/Comanda/DetalhesComanda/@item.idComanda">
+    <div class="number-tables__item">
+        <h2 class="number-tables_item_number">@item.idComanda</h2>
+        <p class="number-tables_item_table">Mesa @item.numMesa</p>
+    </div>
+</a>            }
+        </section>
+    </div>
+</main>

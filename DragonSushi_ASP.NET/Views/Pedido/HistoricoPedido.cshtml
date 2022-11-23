@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DragonSushi_ASP.NET.ViewModel.PedidoViewModel>
+
+@{ ViewBag.Title = "HistoricoPedido";
+                Layout = null; }
+
+<h2>HistoricoPedido</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pedido.idPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pedido.qtdProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pedido.descrPedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pedido.fkProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pedido.fkComanda)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pedido.idPedido)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pedido.qtdProd)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pedido.descrPedido)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pedido.fkProd)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pedido.fkComanda)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>
+</tr>}
+
+</table>
