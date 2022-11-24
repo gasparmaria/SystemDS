@@ -664,3 +664,5 @@ CALL spCadastrarPedido(2, "descricao", 2, 5);
 CALL spCadastrarPedido(4, "descricao", 4, 5);
 
 /* Teste */
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY '12345678';

@@ -337,7 +337,6 @@ body {
 }
 
 .footer {
-    margin-top: 100px;
     color: #fff;
     background-color: #272525;
     padding: 0 0 60px 0
@@ -411,6 +410,11 @@ body {
     gap: 20px;
     font-size: 14px;
     font-family: 'Roboto', sans-serif
+}
+
+.footer__developers {
+    text-underline: none;
+    color: inherit
 }
 
 @media (max-width: 520px) {
@@ -2251,8 +2255,8 @@ body {
             left: 0;
             bottom: 0;
             right: 0;
-            width: 20;
-            height: 20;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: #ED2736
         }
@@ -2479,7 +2483,7 @@ body {
         -webkit-appearance: none;
         -moz-appearance: none;
         background: transparent;
-        background-image: url("data:~/image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 30 20' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='24' viewBox='0 0 30 20' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
         background-repeat: no-repeat;
         background-position-x: 100%;
         background-position-y: 5px;
@@ -2540,14 +2544,14 @@ body {
         font-weight: 600
     }
 
-.employee_page {
+.employee__page {
     background-color: #F4F4F4;
     display: flex;
     min-height: 100vh;
     justify-content: center
 }
 
-.employee_title {
+.employee__title {
     font-family: 'Montserrat', sans-serif;
     font-size: 40px;
     color: #ED2736;
@@ -2555,23 +2559,23 @@ body {
     margin-top: 148px
 }
 
-.employee_page_ul_list {
+.employee__page__ul__list {
     list-style-type: none;
     font-size: 24px;
     font-family: 'Montserrat', sans-serif
 }
 
-    .employee_page_ul_list a {
+    .employee__page__ul__list a {
         text-decoration: none;
         color: #3E3E3E
     }
 
-.employee_page_li_list {
+.employee__page__li__list {
     margin-left: 83px;
     width: 365px
 }
 
-.img_employee_container {
+.img__employee__container {
     margin-top: 83px;
     margin-left: 50px;
     min-width: 10px;
@@ -2579,11 +2583,11 @@ body {
     height: 90%
 }
 
-.employee_title {
+.employee__title {
     margin-bottom: 53px
 }
 
-.employee_title {
+.employee__title {
     font-family: 'Montserrat', sans-serif;
     font-size: 35px;
     color: #ED2736;
@@ -2591,13 +2595,13 @@ body {
     margin-top: 148px
 }
 
-.employee_page_ul_list {
+.employee__page__ul__list {
     list-style-type: none;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif
 }
 
-.employee_page_li_list::after {
+.employee__page__li__list::after {
     display: block;
     content: '';
     width: 172px;
@@ -2607,26 +2611,26 @@ body {
     margin-bottom: 19px
 }
 
-.employee_container {
+.employee__container {
     margin-left: 130px
 }
 
-.employee_page_li_list {
+.employee__page__li__list {
     margin-left: 83px;
     width: 365px
 }
 
-.main_inventory_page {
+.main__inventory__page {
     display: flex;
     content: '';
     background-color: #f4f4f4
 }
 
-.inventory_container {
+.inventory__container {
     width: 100%
 }
 
-.inventory_title {
+.inventory__title {
     width: 100%;
     text-align: center;
     margin-top: 45px;
@@ -2634,14 +2638,14 @@ body {
     position: absolute
 }
 
-    .inventory_title a {
+    .inventory__title a {
         color: #ED2736;
         font-size: 35px;
         font-family: 'Montserrat', sans-serif;
         font-weight: bold
     }
 
-.container_inventory {
+.container__inventory {
     width: 100%;
     display: flex;
     margin-left: 130px;
@@ -2659,7 +2663,7 @@ body {
     width: 80%
 }
 
-.inventory_text {
+.inventory__text {
     font-size: 20px;
     color: #3E3E3E;
     margin-left: 31px;
@@ -2667,13 +2671,13 @@ body {
     width: auto
 }
 
-.quantity_border {
+.quantity__border {
     border: 1px solid black;
     border-radius: 10px;
     width: 79px
 }
 
-.quantity_inventory {
+.quantity__inventory {
     text-align: center;
     display: block;
     font-family: 'Montserrat', sans-serif;
@@ -2681,12 +2685,12 @@ body {
     color: black
 }
 
-.container_inventory img {
+.container__inventory img {
     margin-bottom: 10px;
     width: 15%
 }
 
-.title_total {
+.title__total {
     font-size: 20px;
     color: #3E3E3E;
     font-family: 'Montserrat', sans-serif;
@@ -2695,7 +2699,7 @@ body {
     margin-top: 22px
 }
 
-.border_total {
+.border__total {
     display: flex;
     flex-direction: column;
     border: 1px solid #3E3E3E;
@@ -2705,7 +2709,7 @@ body {
     margin-left: 250px
 }
 
-.total_text {
+.total__text {
     margin-left: 31px;
     margin-bottom: 26px;
     font-size: 18px;
@@ -2717,12 +2721,12 @@ b {
     font-weight: 550
 }
 
-.manager_page {
+.manager__page {
     background-color: #F4F4F4;
     display: flex
 }
 
-.manager_title {
+.manager__title {
     font-family: 'Montserrat', sans-serif;
     font-size: 35px;
     color: #ED2736;
@@ -2732,23 +2736,23 @@ b {
     margin-bottom: 53px
 }
 
-.manager_page_ul_list {
+.manager__page__ul__list {
     list-style-type: none;
     font-size: 24px;
     font-family: 'Montserrat', sans-serif
 }
 
-    .manager_page_ul_list a {
+    .manager__page__ul__list a {
         text-decoration: none;
         color: #3E3E3E
     }
 
-.manager_page_li_list {
+.manager__page__li__list {
     margin-left: 83px;
     width: 365px
 }
 
-.img_manager_container {
+.img__manager__container {
     margin-top: 120px;
     margin-left: 10%;
     width: 40%;
@@ -2756,13 +2760,13 @@ b {
     display: flex
 }
 
-.manager_page_ul_list {
+.manager__page__ul__list {
     list-style-type: none;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif
 }
 
-.manager_page_li_list::after {
+.manager__page__li__list::after {
     display: flex;
     content: '';
     width: 172px;
@@ -2772,16 +2776,16 @@ b {
     margin-bottom: 19px
 }
 
-.manager_container {
+.manager__container {
     margin-left: 130px
 }
 
-.manager_page {
+.manager__page {
     background-color: #F4F4F4;
     display: flex
 }
 
-.manager_page_ul_list {
+.manager__page__ul__list {
     list-style-type: none;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif
@@ -2792,7 +2796,7 @@ a {
     color: #3E3E3E
 }
 
-.registration_order_page {
+.registration__order__page {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -2800,7 +2804,7 @@ a {
     min-height: 100vh
 }
 
-    .registration_order_page .amount-dishe-item input {
+    .registration__order__page .amount-dishe-item input {
         background-color: inherit
     }
 
@@ -2810,7 +2814,7 @@ a {
     overflow: hidden
 }
 
-.registration_order_title {
+.registration__order__title {
     width: 100%;
     text-align: center;
     margin-top: 45px;
@@ -2818,18 +2822,18 @@ a {
     position: absolute
 }
 
-    .registration_order_title a {
+    .registration__order__title a {
         color: #ED2736;
         font-size: 32px;
         font-family: 'Montserrat', sans-serif;
         font-weight: bold
     }
 
-.registration_order_content {
+.registration__order__content {
     width: 100%
 }
 
-.container_registration_order {
+.container__registration__order {
     display: flex;
     background-color: #f4f4f4;
     z-index: 1;
@@ -2841,11 +2845,11 @@ a {
     flex-direction: column
 }
 
-    .container_registration_order img {
+    .container__registration__order img {
         width: 10%
     }
 
-.registration_order_text {
+.registration__order__text {
     color: #3E3E3E;
     font-size: 18px;
     font-family: 'Montserrat', sans-serif;
@@ -2853,7 +2857,7 @@ a {
     width: 150px
 }
 
-.buttons_edit {
+.buttons__edit {
     display: flex;
     gap: 43px
 }
@@ -2863,7 +2867,7 @@ a {
     color: #FF4C4C;
     font-family: 'Montserrat', sans-serif;
     font-size: 35px;
-    font-weight: light;
+    font-weight: lighter;
     cursor: pointer;
     border: none;
     border: 2px solid #D9D9D9;
@@ -2873,7 +2877,7 @@ a {
     background-color: #D9D9D9
 }
 
-.show_result {
+.show__result {
     outline: none;
     border: none;
     color: black;
@@ -2881,26 +2885,26 @@ a {
     font-family: 'Montserrat', sans-serif
 }
 
-.order_price {
+.order__price {
     color: #3E3E3E;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold
 }
 
-.list_order {
+.list__order {
     color: #3E3E3E;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold
 }
 
-.container_registration_order {
+.container__registration__order {
     display: flex;
     width: 100%
 }
 
-.content_registration_order {
+.content__registration__order {
     display: flex;
     gap: 20px;
     flex-direction: row;
@@ -2911,7 +2915,7 @@ a {
     padding: 20px
 }
 
-.order_price_title_total {
+.order__price__title__total {
     font-size: 20px;
     color: #3E3E3E;
     font-family: 'Montserrat', sans-serif;
@@ -2920,7 +2924,7 @@ a {
     margin-top: 22px
 }
 
-.order_price_border_total {
+.order__price__border__total {
     display: flex;
     flex-direction: column;
     border: 1px solid #3E3E3E;
@@ -2932,7 +2936,7 @@ a {
     margin-top: 140px
 }
 
-.order_price_total_text {
+.order__price__total__text {
     margin-left: 31px;
     margin-bottom: 26px;
     font-size: 18px;
@@ -2940,7 +2944,7 @@ a {
     color: #3E3E3E
 }
 
-    .order_price_total_text b {
+    .order__price__total__text b {
         margin-left: 0px
     }
 
@@ -3184,11 +3188,11 @@ a {
     margin-right: 0px
 }
 
-.price_tag {
+.price__tag {
     color: #3E3E3E
 }
 
-.management_page {
+.management__page {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -3196,25 +3200,25 @@ a {
     min-height: 100vh
 }
 
-.management_title {
+.management__title {
     width: 100%;
     text-align: center;
     margin: 45px 0
 }
 
-    .management_title a {
+    .management__title a {
         color: #ED2736;
         font-size: 32px;
         font-family: 'Montserrat', sans-serif;
         font-weight: bold
     }
 
-.management_button {
+.management__button {
     outline: none;
     color: #FF4C4C;
     font-family: 'Montserrat', sans-serif;
     font-size: 25px;
-    font-weight: light;
+    font-weight: lighter;
     cursor: pointer;
     border: none;
     border: 2px solid #D9D9D9;
@@ -3227,35 +3231,35 @@ a {
     justify-content: center
 }
 
-.button_title {
+.button__title {
     display: flex;
     gap: 15px;
     align-items: center
 }
 
-.management_container_title {
+.management__container__title {
     font-family: 'Montserrat', sans-serif;
     color: #3E3E3E;
     font-weight: 600;
     font-size: 23px
 }
 
-.management_content {
+.management__content {
     display: block;
     border-bottom: 4px solid #E0E0E0;
     width: 90vw;
     margin: 0px auto 0px auto
 }
 
-    .management_content .box {
+    .management__content .box {
         position: relative;
         height: 0;
         overflow: hidden;
         transition: 0.5s;
-        overflow: none
+        overflow: hidden;
     }
 
-    .management_content.active .box {
+    .management__content.active .box {
         height: auto;
         padding: 32px;
         border: 1px solid #7a7a7a;
@@ -3263,37 +3267,37 @@ a {
         margin-bottom: 20px
     }
 
-.box_title {
+.box__title {
     color: #3E3E3E;
     font-family: 'Montserrat', sans-serif;
     font-size: 22px;
     margin-left: 30px
 }
 
-.box_content {
+.box__content {
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 50px
 }
 
-    .box_content img {
+    .box__content img {
         width: 4vh;
         vertical-align: middle
     }
 
-.box_info_text {
+.box__info__text {
     color: #3E3E3E;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px
 }
 
-.caixa_total {
+.caixa__total {
     border: 1px solid black;
     border-radius: 15px;
     margin-top: 20px
 }
 
-.caixa_total_text {
+.caixa__total__text {
     color: #3E3E3E;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
@@ -3301,14 +3305,14 @@ a {
     padding: 10px
 }
 
-.book_page {
+.book__page {
     display: flex;
     flex-direction: column;
     width: 100%;
     background-color: #F4F4F4
 }
 
-.book_page_search {
+.book__page__search {
     width: 50%;
     display: flex;
     justify-content: space-between;
@@ -3317,7 +3321,7 @@ a {
     margin: 0 auto
 }
 
-    .book_page_search .iconify-icon-book-page {
+    .book__page__search .iconify-icon-book-page {
         display: flex;
         justify-content: center;
         align-items: flex-end;
@@ -3325,7 +3329,7 @@ a {
         color: #595959
     }
 
-    .book_page_search .book_page_search_bar {
+    .book__page__search .book__page__search__bar {
         width: 90%;
         height: 100%;
         border: none;
@@ -3333,20 +3337,20 @@ a {
         font-size: 24px
     }
 
-.book_title {
+.book__title {
     width: 100%;
     text-align: center;
     margin-top: 45px
 }
 
-    .book_title a {
+    .book__title a {
         color: #ED2736;
         font-size: 30px;
         font-family: 'Montserrat', sans-serif;
         font-weight: bold
     }
 
-.book_page_search_bar {
+.book__page__search__bar {
     display: flex;
     justify-content: center;
     outline: none;
@@ -3359,14 +3363,14 @@ a {
     font-size: 24px
 }
 
-.book_page_container {
+.book__page__container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     grid-gap: 24px;
     padding: 36px
 }
 
-    .book_page_container .book_page_cards {
+    .book__page__container .book__page__cards {
         display: flex;
         flex-direction: column;
         padding: 24px 12px;
@@ -3376,7 +3380,7 @@ a {
         font-family: 'Montserrat'
     }
 
-        .book_page_container .book_page_cards h1.card_title {
+        .book__page__container .book__page__cards h1.card__title {
             text-align: center;
             font-family: 'Montserrat';
             font-style: normal;
@@ -3385,27 +3389,27 @@ a {
             color: #3E3E3E
         }
 
-        .book_page_container .book_page_cards > div {
+        .book__page__container .book__page__cards > div {
             display: flex;
             justify-content: flex-start;
             align-items: center;
             gap: 4px
         }
 
-            .book_page_container .book_page_cards > div a {
+            .book__page__container .book__page__cards > div a {
                 font-size: 16px
             }
 
-        .book_page_container .book_page_cards > :last-child {
+        .book__page__container .book__page__cards > :last-child {
             align-self: flex-end
         }
 
-            .book_page_container .book_page_cards > :last-child img {
+            .book__page__container .book__page__cards > :last-child img {
                 width: 18px;
                 height: auto
             }
 
-.button_add {
+.button__add {
     position: fixed;
     left: 95%;
     top: 90%;
@@ -3417,11 +3421,11 @@ a {
     cursor: pointer
 }
 
-    .button_add .icon-add {
+    .button__add .icon-add {
         font-size: 36px
     }
 
-.employee_inventory_page {
+.employee__inventory__page {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -3429,17 +3433,17 @@ a {
     font-family: 'Montserrat'
 }
 
-.employee-inventory_title {
+.employee-inventory__title {
     position: relative
 }
 
-.content_header {
+.content__header {
     display: flex;
     justify-content: space-between;
     padding: 0 253px
 }
 
-    .content_header .employee_inventory_search {
+    .content__header .employee__inventory__search {
         width: auto;
         height: 100%;
         background: none;
@@ -3450,7 +3454,7 @@ a {
         gap: 16px
     }
 
-        .content_header .employee_inventory_search .employee_inventory_search_bar {
+        .content__header .employee__inventory__search .employee__inventory__search__bar {
             width: 500px;
             outline: none;
             border: none;
@@ -3459,7 +3463,7 @@ a {
             font-size: 20px
         }
 
-        .content_header .employee_inventory_search .iconify-icon-book-page {
+        .content__header .employee__inventory__search .iconify-icon-book-page {
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -3467,7 +3471,7 @@ a {
             color: #595959
         }
 
-    .content_header .btn_register_product {
+    .content__header .btn__register__product {
         background: none;
         border: 2px solid #ED2736;
         border-radius: 5px;
@@ -3478,24 +3482,24 @@ a {
         transition: 200ms ease-in-out
     }
 
-        .content_header .btn_register_product:hover {
+        .content__header .btn__register__product:hover {
             background-color: #ED2736;
             color: #ffffff
         }
 
-.employee_inventory_content {
+.employee__inventory__content {
     display: flex;
     width: 100%;
     align-items: center
 }
 
-.employee_inventory_box {
+.employee__inventory__box {
     margin-left: auto;
     margin-right: auto;
     gap: 50px
 }
 
-.box_itens {
+.box__itens {
     display: flex;
     height: 100px;
     gap: 50px;
@@ -3506,7 +3510,7 @@ a {
     align-items: center
 }
 
-.employee_inventory_header {
+.employee__inventory__header {
     display: flex;
     height: 50px;
     gap: 50px;
@@ -3517,33 +3521,33 @@ a {
     align-items: center
 }
 
-.id_container {
+.id__container {
     width: 4vh;
     text-align: center
 }
 
-.name_container {
+.name__container {
     width: 40vh;
     text-align: center
 }
 
-.quantity_container {
+.quantity__container {
     width: 40vh;
     text-align: center
 }
 
-.img_container {
+.img__container {
     width: 10vh;
     text-align: center
 }
 
-.employee_register {
+.employee__register {
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 0 16px;
     min-height: 100vh;
-    gap: 16;
+    gap: 16px;
     flex-wrap: wrap;
     position: relative;
     overflow: hidden;
@@ -3551,23 +3555,23 @@ a {
 }
 
 @media (max-width: 1050px) {
-    .employee_register .employee_register .line-break {
+    .employee__register .employee__register .line-break {
         display: none
     }
 
-    .employee_register .form {
+    .employee__register .form {
         order: 0;
         margin: 20px 0
     }
 }
 
-.client_register {
+.client__register {
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 0 16px;
     min-height: 100vh;
-    gap: 16;
+    gap: 16px;
     flex-wrap: wrap;
     position: relative;
     overflow: hidden;
@@ -3575,11 +3579,11 @@ a {
 }
 
 @media (max-width: 1050px) {
-    .client_register .client_register .line-break {
+    .client__register .client__register .line-break {
         display: none
     }
 
-    .client_register .form {
+    .client__register .form {
         order: 0;
         margin: 20px 0
     }
@@ -3603,7 +3607,7 @@ a {
     align-items: center;
     padding: 0 16px;
     min-height: 100vh;
-    gap: 16;
+    gap: 16px;
     flex-wrap: wrap;
     position: relative;
     overflow: hidden;
@@ -3641,13 +3645,13 @@ a {
     }
 }
 
-.product_register {
+.product__register {
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 0 16px;
     min-height: 100vh;
-    gap: 16;
+    gap: 16px;
     flex-wrap: wrap;
     position: relative;
     overflow: hidden;
@@ -3655,27 +3659,27 @@ a {
 }
 
 @media (max-width: 1050px) {
-    .product_register .product_register .line-break {
+    .product__register .product__register .line-break {
         display: none
     }
 
-    .product_register .form {
+    .product__register .form {
         order: 0;
         margin: 20px 0
     }
 }
 
-.checkbox_text {
+.checkbox__text {
     text-align: center
 }
 
-.product_register {
+.product__register {
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 0 16px;
     min-height: 100vh;
-    gap: 16;
+    gap: 16px;
     flex-wrap: wrap;
     position: relative;
     overflow: hidden;
@@ -3683,21 +3687,21 @@ a {
 }
 
 @media (max-width: 1050px) {
-    .product_register .product_register .line-break {
+    .product__register .product__register .line-break {
         display: none
     }
 
-    .product_register .form {
+    .product__register .form {
         order: 0;
         margin: 20px 0
     }
 }
 
-.checkbox_text {
+.checkbox__text {
     text-align: center
 }
 
-.client_register_text {
+.client__register__text {
     font-size: 13px;
     color: #ed2736;
     border-bottom: 1px solid #ed2736;
