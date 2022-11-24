@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<DragonSushi_ASP.NET.ViewModel.ProdutoViewModel>
 
+<<<<<<< HEAD
 @{
     ViewBag.Title = "ConsultarCategoria";
     Layout = null;
@@ -113,89 +114,83 @@
             </div>
         </div>
     </header>
+=======
+@{ 
+    ViewBag.Title = "ConsultarCategoria";
+}
+>>>>>>> feature-system-layout
     <main class="home">
-        <!--
-            Hero
-         -->
         <section class="hero">
             <div class="container">
                 <div class="hero__text">
-                    <h1 class="hero_text_title">Faça já seu pedido!</h1>
-                    <p class="hero_text_paragraph">
+                    <h1 class="hero__text__title">Faça já seu pedido!</h1>
+                    <p class="hero__text__paragraph">
                         Experimente o melhor do oriente sem sair de casa.<br class="line-break">
                         Veja nossos pratos, bebidas e venha se deliciar!
                     </p>
-                    <a class="accent-button hero_text_link" href="#cardapio">Peça agora <img src="~/images/icon-chopsticks.png" alt=""></a>
+                    <a class="accent-button hero__text__link" href="#cardapio">Peça agora <img src="~/images/icon-chopsticks.png" alt=""></a>
                 </div>
                 <picture class="hero__img">
                     <img src="~/images/home/hero.png" alt="Fazendo sushi">
                 </picture>
             </div>
         </section>
-
-        <!--
-            Pratos mais VENDIDOS
-         -->
         <section class="main-dishes">
             <h1 class="main-dishes__title">PRATOS MAIS VENDIDOS</h1>
             <div class="card-dishes container">
                 <div class="card-dishes__item">
-                    <picture class="card-dishes_item_img">
+                    <picture class="card-dishes__item__img">
                         <a><img src="https://www.dicasdemulher.com.br/wp-content/uploads/2020/01/salmao-grelhado-0.png" alt=""></a>
                     </picture>
-                    <h1 class="card-dishes_item_title">
+                    <h1 class="card-dishes__item__title">
                         Salmão grelhado
                     </h1>
-                    <p class="card-dishes_item_paragraph">
+                    <p class="card-dishes__item__paragraph">
                         Porção de 200g de fatias de salmão grelhado.
                     </p>
-                    <div class="card-dishes_item_info-buy">
-                        <span class="card-dishes_iteminfo-buy_price">R$ 54.90</span>
-                        <span class="card-dishes_iteminfo-buy_icon">
+                    <div class="card-dishes__item__info-buy">
+                        <span class="card-dishes__item__info-buy__price">R$ 54.90</span>
+                        <span class="card-dishes__item__info-buy__icon">
                             <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
                         </span>
                     </div>
                 </div>
                 <div class="card-dishes__item">
-                    <picture class="card-dishes_item_img">
+                    <picture class="card-dishes__item__img">
                         <img src="https://koibc.com.br/cardapios/storage/images/2021/09/temaki-filadelfia.jpg" alt="">
                     </picture>
-                    <h1 class="card-dishes_item_title">
+                    <h1 class="card-dishes__item__title">
                         Temaki de salmão grelhado
                     </h1>
-                    <p class="card-dishes_item_paragraph">
+                    <p class="card-dishes__item__paragraph">
                         Salmão grelhado, cream cheese, cebolinha, arroz e nori.
                     </p>
-                    <div class="card-dishes_item_info-buy">
-                        <span class="card-dishes_iteminfo-buy_price">R$ 18.99</span>
-                        <span class="card-dishes_iteminfo-buy_icon">
+                    <div class="card-dishes__item__info-buy">
+                        <span class="card-dishes__item__info-buy__price">R$ 18.99</span>
+                        <span class="card-dishes__item__info-buy__icon">
                             <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
                         </span>
                     </div>
                 </div>
                 <div class="card-dishes__item">
-                    <picture class="card-dishes_item_img">
+                    <picture class="card-dishes__item__img">
                         <img src="https://koibc.com.br/cardapios/storage/images/2021/09/hot-filadelfia.jpg" alt="">
                     </picture>
-                    <h1 class="card-dishes_item_title">
+                    <h1 class="card-dishes__item__title">
                         Hot roll
                     </h1>
-                    <p class="card-dishes_item_paragraph">
+                    <p class="card-dishes__item__paragraph">
                         8 unidades de sushi de salmão empanado com cream cheese e molho tarê
                     </p>
-                    <div class="card-dishes_item_info-buy">
-                        <span class="card-dishes_iteminfo-buy_price">R$ 12.90</span>
-                        <span class="card-dishes_iteminfo-buy_icon">
+                    <div class="card-dishes__item__info-buy">
+                        <span class="card-dishes__item__info-buy__price">R$ 12.90</span>
+                        <span class="card-dishes__item__info-buy__icon">
                             <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
                         </span>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!--
-            Cardápio do RESTAURANTE
-         -->
         <section class="restaurant-menu">
             <div class="container">
                 <h1 id="cardapio" class="restaurant-menu__title">CARDÁPIO</h1>
@@ -203,9 +198,6 @@
                     Descubra pratos novos todos os dias na Dragon Sushi!
                 </p>
             </div>
-            <!--
-                Pratos da lista de ENTRADAS
-            -->
             <section class="restaurant-menu__list-dishe">
                 <div class="container">
                     <h1 class="restaurant-menu__title-type-dishe">ENTRADAS</h1>
@@ -214,27 +206,24 @@
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 1))
                     {
                         <div class="card-dishes__item">
-                            <picture class="card-dishes_item_img">
+                            <picture class="card-dishes__item__img">
                                 <img src="@item.Produto.imgProd" alt="">
                             </picture>
-                            <h1 class="card-dishes_item_title">
+                            <h1 class="card-dishes__item__title">
                                 @item.Produto.nomeProd
                             </h1>
-                            <p class="card-dishes_item_paragraph">
+                            <p class="card-dishes__item__paragraph">
                                 @item.Produto.descrProd
                             </p>
-                            <div class="card-dishes_item_info-buy">
-                                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes_iteminfo-buy_icon">
+                            <div class="card-dishes__item__info-buy">
+                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
+                                <span class="card-dishes__item__info-buy__icon">
                                     <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
                                 </span>
                             </div>
                         </div>}
                 </div>
             </section>
-            <!--
-                Pratos da lista de PRATOS QUENTES
-             -->
             <section class="restaurant-menu__list-dishe">
                 <div class="container">
                     <h1 class="restaurant-menu__title-type-dishe">PRATOS QUENTES</h1>
@@ -244,35 +233,31 @@
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 2))
                     {
                         <div class="card-dishes__item">
-                            <picture class="card-dishes_item_img">
+                            <picture class="card-dishes__item__img">
                                 <img src="@item.Produto.imgProd" alt="">
                             </picture>
-                            <h1 class="card-dishes_item_title">
+                            <h1 class="card-dishes__item__title">
                                 @item.Produto.nomeProd
                             </h1>
-                            <p class="card-dishes_item_paragraph">
+                            <p class="card-dishes__item__paragraph">
                                 @item.Produto.descrProd
                             </p>
-                            <div class="card-dishes_item_info-buy">
-                                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes_iteminfo-buy_icon">
+                            <div class="card-dishes__item__info-buy">
+                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
+                                <span class="card-dishes__item__info-buy__icon">
                                     <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
                                 </span>
                             </div>
                         </div>}
                 </div>
             </section>
-
-            <!--
-                Baixe nosso APP
-             -->
             <section class="download-app">
                 <div class="container">
                     <div class="download-app__text">
-                        <h1 class="download-app_text_title">
+                        <h1 class="download-app__text__title">
                             Baixe o nosso App
                         </h1>
-                        <p class="download-app_text_paragraph">
+                        <p class="download-app__text__paragraph">
                             Confira nossos pratos, bebidas<br>e ofertas tudo na palma da sua mão.
                         </p>
                         <span>
@@ -288,10 +273,6 @@
                     </div>
                 </div>
             </section>
-
-            <!--
-                Pratos da lista de TEMAKIS
-             -->
             <section class="restaurant-menu__list-dishe">
                 <div class="container">
                     <h1 class="restaurant-menu__title-type-dishe">TEMAKIS</h1>
@@ -300,27 +281,24 @@
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 3))
                     {
                         <div class="card-dishes__item">
-                            <picture class="card-dishes_item_img">
+                            <picture class="card-dishes__item__img">
                                 <img src="@item.Produto.imgProd" alt="">
                             </picture>
-                            <h1 class="card-dishes_item_title">
+                            <h1 class="card-dishes__item__title">
                                 @item.Produto.nomeProd
                             </h1>
-                            <p class="card-dishes_item_paragraph">
+                            <p class="card-dishes__item__paragraph">
                                 @item.Produto.descrProd
                             </p>
-                            <div class="card-dishes_item_info-buy">
-                                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes_iteminfo-buy_icon">
+                            <div class="card-dishes__item__info-buy">
+                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
+                                <span class="card-dishes__item__info-buy__icon">
                                     <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
                                 </span>
                             </div>
                         </div>}
                 </div>
             </section>
-            <!--
-                Pratos da lista de PEÇAS
-             -->
             <section class="restaurant-menu__list-dishe">
                 <div class="container">
                     <h1 class="restaurant-menu__title-type-dishe">PEÇAS</h1>
@@ -329,27 +307,25 @@
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 4))
                     {
                         <div class="card-dishes__item">
-                            <picture class="card-dishes_item_img">
+                            <picture class="card-dishes__item__img">
                                 <img src="@item.Produto.imgProd" alt="">
                             </picture>
-                            <h1 class="card-dishes_item_title">
+                            <h1 class="card-dishes__item__title">
                                 @item.Produto.nomeProd
                             </h1>
-                            <p class="card-dishes_item_paragraph">
+                            <p class="card-dishes__item__paragraph">
                                 @item.Produto.descrProd
                             </p>
-                            <div class="card-dishes_item_info-buy">
-                                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes_iteminfo-buy_icon">
+                            <div class="card-dishes__item__info-buy">
+                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
+                                <span class="card-dishes__item__info-buy__icon">
                                     <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
                                 </span>
                             </div>
-                        </div>}
+                        </div>
+                     }
                 </div>
             </section>
-            <!--
-                Pratos da lista de COMBOS
-             -->
             <section class="restaurant-menu__list-dishe">
                 <div class="container">
                     <h1 class="restaurant-menu__title-type-dishe">COMBOS</h1>
@@ -358,27 +334,24 @@
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 5))
                     {
                         <div class="card-dishes__item">
-                            <picture class="card-dishes_item_img">
+                            <picture class="card-dishes__item__img">
                                 <img src="@item.Produto.imgProd" alt="">
                             </picture>
-                            <h1 class="card-dishes_item_title">
+                            <h1 class="card-dishes__item__title">
                                 @item.Produto.nomeProd
                             </h1>
-                            <p class="card-dishes_item_paragraph">
+                            <p class="card-dishes__item__paragraph">
                                 @item.Produto.descrProd
                             </p>
-                            <div class="card-dishes_item_info-buy">
-                                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes_iteminfo-buy_icon">
+                            <div class="card-dishes__item__info-buy">
+                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
+                                <span class="card-dishes__item__info-buy__icon">
                                     <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
                                 </span>
                             </div>
                         </div>}
                 </div>
             </section>
-            <!--
-                Pratos da lista de BEBIDAS
-             -->
             <section class="restaurant-menu__list-dishe">
                 <div class="container">
                     <h1 class="restaurant-menu__title-type-dishe">BEBIDAS</h1>
@@ -387,27 +360,26 @@
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 6))
                     {
                         <div class="card-dishes__item">
-                            <picture class="card-dishes_item_img">
+                            <picture class="card-dishes__item__img">
                                 <img src="@item.Produto.imgProd" alt="">
                             </picture>
-                            <h1 class="card-dishes_item_title">
+                            <h1 class="card-dishes__item__title">
                                 @item.Produto.nomeProd
                             </h1>
-                            <p class="card-dishes_item_paragraph">
+                            <p class="card-dishes__item__paragraph">
                                 @item.Produto.descrProd
                             </p>
-                            <div class="card-dishes_item_info-buy">
-                                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes_iteminfo-buy_icon">
+                            <div class="card-dishes__item__info-buy">
+                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
+                                <span class="card-dishes__item__info-buy__icon">
                                     <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
                                 </span>
                             </div>
-                        </div>}
+                        </div>
+                     }
                 </div>
-
             </section>
         </section>
-
         <section class="who-we-are">
             <div class="container">
                 <div class="who-we-are__text">
@@ -437,46 +409,3 @@
             </div>
         </section>
     </main>
-    <footer class="footer">
-        <div class="footer__container-img">
-            <img src="images/logo.png" alt="">
-        </div>
-        <div class="container">
-            <h1 class="footer__title">DRAGON SUSHI</h1>
-        </div>
-        <div class="container">
-            <div class="footer__info">
-                <div class="footer__info__links">
-                    <h2 class="footer__info__title">Links</h2>
-                    <ul class="footer__info__links__list">
-                        <li><a href="#">> Home</a></li>
-                        <li><a href="#cardapio">> Cardápio</a></li>
-                        <li><a href="#quem-somos">> Quem Somos</a></li>
-                    </ul>
-                </div>
-                <div class="footer__info__social">
-                    <h2 class="footer__info__title">Social</h2>
-                    <ul class="footer__info__links__list">
-                        <li><a href="#">> Instagram</a></li>
-                    </ul>
-                </div>
-                <div class="footer__info__address">
-                    <h2 class="footer__info__title">Endereço</h2>
-                    <ul class="footer__info__links__list">
-                        <li>R. Guiapá, 678, Villa Leopoldina,<br> São Paulo - SP.</li>
-                        <li>Telefone: (11) 3834-4111</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container footer__copyright">
-            <p class="footer__all-rights-reserved">
-                Copyright © 2022 Dragon Sushi | Todos os Direitos Reservados
-            </p>
-            <p class="footer__developers">
-                Desenvolvido por Westen
-            </p>
-        </div>
-    </footer>
-</body>
-</html>

@@ -8,8 +8,13 @@ namespace DragonSushi_ASP.NET
         // Para obter mais informações sobre o agrupamento, visite https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            /*
+                bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                "~/Scripts/jquery-{version}.js"));
+             */
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-3.4.1.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -23,8 +28,13 @@ namespace DragonSushi_ASP.NET
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/script").Include(
+                      "~/Scripts/script.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/style.css"));
         }
     }
 }
