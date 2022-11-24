@@ -1,17 +1,22 @@
 ﻿using DragonSushi_ASP.NET.DAO;
 using DragonSushi_ASP.NET.Models;
 using DragonSushi_ASP.NET.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Web.Script.Serialization;
 
 namespace DragonSushi_ASP.NET.Controllers
 {
     public class UsuarioController : Controller
     {
-        // CADASTRAR USUARIO (ADICIONAR USUARIO)
+        // CADASTRAR USUÁRIO 
 
         public ActionResult CadastrarUsuario()
         {
@@ -26,95 +31,63 @@ namespace DragonSushi_ASP.NET.Controllers
             return View();
         }
 
-        public ActionResult SelectLogin(string vLogin)
-        {
-            bool LoginExists;
-            string login = new Usuario().SelectLogin(vLogin);
-
-            if (login.Length == 0)
-                LoginExists = false;
-            else
-                LoginExists = true;
-
-            return Json(!LoginExists, JsonRequestBehavior.AllowGet);
-        }
-
+        // LOGIN
         public ActionResult Login()
         {
             return View();
         }
 
-        //public ActionResult Login(string ReturnUrl)
-        //{
-        //    var viewmodel = new LoginViewModel
-        //    {
-        //        urlRetorno = ReturnUrl
-        //    };
-        //    return View(viewmodel);
-        //}
+        [HttpPost]
+        public ActionResult Login(UsuarioViewModel vmusuario)
+        {
+            UsuarioDAO dao = new UsuarioDAO();
+
+            var login = dao.spSelectUsuario(vmusuario.Usuario.login);
+
+            //string usuario = login.ToString();
+            //FileStream createStream = File.Create(fileName);
+
+            string fileName = "usuariologado.json";
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string jsonString = JsonSerializer.Serialize(vmusuario);
+            File.WriteAllText(fileName, jsonString);
 
 
-        //[HttpPost]
-        //public ActionResult Login(LoginViewModel viewmodel)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(viewmodel);
-        //    }
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
 
-        //    DataBase db = new DataBase();
-        //    db.conectarDb();
+            if (login == null)
+                return View();
+            else
+            {
+                int ocupacao = login.Pessoa.ocupacao;
 
-        //    Usuario usuario = new Usuario();
-        //    usuario = usuario.SelectUsuario(viewmodel.Login);
+                if (ocupacao == 1)
+                {
+                    return RedirectToAction("AreaGerente", "Funcionario");
+                }
+                else if (ocupacao == 2)
+                {
+                    return RedirectToAction("AreaFuncionario", "Funcionario");
+                }
+                else
+                {
+                    return RedirectToAction("ConsultarCardapio", "Produto");
+                }
+            }
+        }
 
-        //    int ocupacao = usuario.ocupacao;
-
-        //    var identity = new ClaimsIdentity(new[]
-        //    {
-        //        new Claim(ClaimTypes.Name, usuario.login),
-        //        new Claim("Login", usuario.login)
-        //    }, "AppAplicationCookie");
-
-        //    Request.GetOwinContext().Authentication.SignIn(identity);
-
-
-        //    if (!String.IsNullOrWhiteSpace(viewmodel.urlRetorno) || Url.IsLocalUrl(viewmodel.urlRetorno))
-        //        return Redirect(viewmodel.urlRetorno);
-        //    else
-        //    {
-        //        switch (ocupacao)
-        //        {
-        //            case 1:
-        //                return RedirectToAction("AreaGerente", "Funcionario");
-
-        //            case 2:
-        //                return RedirectToAction("AreaFuncionario", "Funcionario");
-
-        //            case 3:
-        //                return RedirectToAction("ConsultarCategoria", "Produto");
-
-        //        }
-        //    }      
-
-
-
-        //}
-
-        //public ActionResult Logout()
-        //{
-        //    Request.GetOwinContext().Authentication.SignOut("AppAplicationCookie");
-        //    return RedirectToAction("ConsultarCategoria", "Produto");
-        //}
-
+        // LOGOUT
+        public ActionResult Logout()
+        {
+            return RedirectToAction("Login", "Usuario");
+        }
 
 
         // ALTERAR LOGIN
-
-        public ActionResult EditarPerfil(int id)
+        public ActionResult EditarPerfil(UsuarioViewModel vmusuario)
         {
             UsuarioDAO dao = new UsuarioDAO();
-            var usuario = dao.spSelectUsuario(id);
+            var usuario = dao.spSelectUsuario(vmusuario.Usuario.login);
 
             return View(usuario);
         }
@@ -126,7 +99,7 @@ namespace DragonSushi_ASP.NET.Controllers
             dao.EditarPerfil(vmusuario);
 
 
-            return View("ConsultarCategoria");
+            return RedirectToAction("ConsultarCategoria", "Produto");
         }
     }
 }

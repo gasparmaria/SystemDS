@@ -12,6 +12,7 @@ namespace DragonSushi_ASP.NET.DAO
     public class UsuarioDAO
     {
         Database db = new Database();
+
         // CADASTRAR USUÁRIO
         public void cadastrarUsuario(UsuarioViewModel vmUsuario)
         {
@@ -41,6 +42,7 @@ namespace DragonSushi_ASP.NET.DAO
             }
         }
 
+        // GERADOR DE LISTA DE USUARIO
         public List<UsuarioViewModel> listaUsuario(MySqlDataReader leitor)
         {
             var usuario = new List<UsuarioViewModel>();
@@ -53,8 +55,7 @@ namespace DragonSushi_ASP.NET.DAO
                     {
                         idUsuario = Convert.ToInt32(leitor["idUsuario"]),
                         login = Convert.ToString(leitor["login"]),
-                        senha = Convert.ToString(leitor["senha"]),
-                        ocupacao = Convert.ToInt32(leitor["ocupacao"]),
+                        senha = Convert.ToString(leitor["senha"])
                     },
                     Pessoa = new Pessoa()
                     {
@@ -62,6 +63,7 @@ namespace DragonSushi_ASP.NET.DAO
                         nomePessoa = Convert.ToString(leitor["nomePessoa"]),
                         telefone = Convert.ToString(leitor["telefone"]),
                         cpf = Convert.ToString(leitor["cpf"]),
+                        ocupacao = Convert.ToInt32(leitor["ocupacao"])
                     }
                 };
                 usuario.Add(lstUsuario);
@@ -71,22 +73,7 @@ namespace DragonSushi_ASP.NET.DAO
             return usuario;
         }
 
-        public string SelectLogin(string login)
-        {
-            db.conectarDb();
-
-            string strQuery = string.Format("CALL spSelectLogin('{0}');", login);
-            MySqlCommand exibir = new MySqlCommand(strQuery, db.conectarDb());
-            string Login = (string)exibir.ExecuteScalar(); // ExecuteScalar: RETORNAR APENAS 1 VALOR
-            db.desconectarDb();
-
-            if (Login == null)
-                Login = "";
-            return Login;
-        }
-
-        //EDITAR PERFIL
-
+        // EDITAR PERFIL
         public void EditarPerfil(UsuarioViewModel vmUsuario)
         {
             Database db = new Database();
@@ -102,16 +89,15 @@ namespace DragonSushi_ASP.NET.DAO
             db.desconectarDb();
         }
 
-        public UsuarioViewModel spSelectUsuario(int id)
+        // LOGIN
+        public UsuarioViewModel spSelectUsuario(string login)
         {
             Database db = new Database();
-            string selectQuery = String.Format("CALL spSelectUsuario('{0}')", id);
+            string selectQuery = String.Format("CALL spSelectUsuario('{0}')", login);
             MySqlCommand command = new MySqlCommand(selectQuery, db.conectarDb());
             var dados = command.ExecuteReader();
 
-
             return listaUsuario(dados).FirstOrDefault();
         }
-
     }
 }

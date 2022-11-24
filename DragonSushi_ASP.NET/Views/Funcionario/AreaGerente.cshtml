@@ -1,21 +1,63 @@
-﻿@{ ViewBag.Title = "AreaGerente"; }
+﻿@{
+    ViewBag.Title = "AreaGerente";
+    Layout = null;
+}
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<main class="manager_page">
-    <div class="manager_container">
-        <h1 class="manager_title">ÁREA DO GERENTE</h1>
+    <meta name="keywords" content="Restaurante, Japonês, Delivery, Sushi, Temaki, ">
+    <meta name="description" content="Faça já seu pedido na Dragon Sushi! Confira nossos pratos, ofertas e muito mais!">
+    <meta name="author" content="Gabriel S. Evangelista, Henrique R. Pereira, Guilherme Ferreira, Gustavo Basilio, Maria Eduarda G. Lima, Guilherme Lemes">
 
-        <ul class="manager_page_ul_list">
-            <div class="manager_list">
-            <li class="manager_page_li_list">@Html.ActionLink("CADASTRO DE PRODUTO", "CadastrarProduto", "Produto")</li>
-            <li class="manager_page_li_list">@Html.ActionLink("CADASTRO DE FUNCIONÁRIO", "CadastrarFuncionario", "Funcionario")</li>
-            <li class="manager_page_li_list">@Html.ActionLink("ESTOQUE", "MostrarEstoque", "Produto")</li>
-    </div>
-    </ul>
-    </div>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
-    <img class="img_manager_container" src="~/images/themes/manager-working.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <hr class="line_under_image">
-</main>
+    <!--
+        Fonts: Montserrat, Roboto and Patua One
+        font-family: 'Montserrat', sans-serif;
+          - Font weight: 300, 400, 600 and 700
+        font-family: 'Roboto', sans-serif;
+          - Font weight: 300, 400 and 700
+        font-family: 'Patua One', cursive;
+          - Font weight: 400
+        font-family: 'Open Sans', sans-serif;
+          - Font weight: 300, 400 and 700
+    -->
 
+    <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+    <script defer src="js/script.js"></script>
+
+    <title>Dragon Sushi - Restaurante Japonês</title>
+</head>
+<body>
+    <main class="manager_page">
+        <div class="manager_container">
+            <h1 class="manager_title">ÁREA DO GERENTE</h1>
+
+            <ul class="manager_page_ul_list">
+                <div class="manager_list">
+                <li class="manager_page_li_list">@Html.ActionLink("CADASTRO DE PRODUTO", "CadastrarProduto", "Produto")</li>
+                <li class="manager_page_li_list">@Html.ActionLink("CADASTRO DE FUNCIONÁRIO", "CadastrarFuncionario", "Funcionario")</li>
+                <li class="manager_page_li_list">@Html.ActionLink("ESTOQUE", "MostrarEstoque", "Produto")</li>
+        </div>
+        </ul>
+        </div>
+
+        <img class="img_manager_container" src="~/images/themes/manager-working.png">
+
+        <hr class="line_under_image">
+    </main>
+</body>
+</html>

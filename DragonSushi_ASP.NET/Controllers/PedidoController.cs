@@ -26,6 +26,7 @@ namespace DragonSushi_ASP.NET.Controllers
         }
 
         // EXCLUIR PEDIDO
+
         [HttpDelete]
         public ActionResult ExcluirPedido(int id)
         {
@@ -34,7 +35,7 @@ namespace DragonSushi_ASP.NET.Controllers
             return View();
         }
 
-        // PERFIL (HISTORIOCO DE PRODUTOS)
+        // HISTORIOCO DE PEDIDOS
 
         public ActionResult HistoricoPedido()
         {

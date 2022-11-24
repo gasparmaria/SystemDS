@@ -1,4 +1,4 @@
-﻿@model DragonSushi_ASP.NET.ViewModel.LoginViewModel
+﻿@model DragonSushi_ASP.NET.ViewModel.UsuarioViewModel
 
 @{
     ViewBag.Title = "Login";
@@ -27,18 +27,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <!--
-        Fonts: Montserrat, Roboto and Patua One
-        font-family: 'Montserrat', sans-serif;
-          - Font weight: 300, 400, 600 and 700
-        font-family: 'Roboto', sans-serif;
-          - Font weight: 300, 400 and 700
-        font-family: 'Patua One', cursive;
-          - Font weight: 400
-        font-family: 'Open Sans', sans-serif;
-          - Font weight: 300, 400 and 700
-    -->
-
     <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
     <script defer src="js/jquery-3.6.1.min.js"></script>
     <script defer src="js/script.js"></script>
@@ -57,34 +45,33 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.urlRetorno)
                 <h1 class="form__title">Faça login e realize já seu <br class="line-break">pedido</h1>
                 <div class="form__box">
-                    @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "form_box_label" })
+                    @Html.LabelFor(model => model.Usuario.login, htmlAttributes: new { @class = "form_box_label" })
                     <div class="form_box_input-icon">
                         <iconify-icon icon="eva:email-fill"></iconify-icon>
-                        @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @placeholder = "Digite seu e-mail" } })
-                        @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Usuario.login, new { htmlAttributes = new { @placeholder = "Digite seu e-mail" } })
+                        @Html.ValidationMessageFor(model => model.Usuario.login, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form__box">
-                    @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "form_box_label" })
+                    @Html.LabelFor(model => model.Usuario.senha, htmlAttributes: new { @class = "form_box_label" })
                     <div class="form_box_input-icon">
                         <iconify-icon icon="uis:padlock"></iconify-icon>
-                        @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @placeholder = "Digite sua senha" } })
-                        @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Usuario.senha, new { htmlAttributes = new { @placeholder = "Digite sua senha" } })
+                        @Html.ValidationMessageFor(model => model.Usuario.senha, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-container-flex-button">
                     <input type="submit" value="Entrar" class="form__button" />
                 </div>
-                <p class="form__paragraph">
-                    Ainda não possui cadastro?
-                    <span class="form_paragraph_accent-text">
-                        @Html.ActionLink("Crie sua conta!", "CadastrarUsuario", "Usuario")
-                    </span>
-                </p>
             }
+            <p class="form__paragraph">
+                Ainda não possui cadastro?
+                <span class="form_paragraph_accent-text">
+                    @Html.ActionLink("Crie sua conta!", "CadastrarUsuario", "Usuario")
+                </span>
+            </p>
         </div>
     </main>
 </body>
