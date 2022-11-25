@@ -25,7 +25,7 @@ namespace DragonSushi_ASP.NET.DAO
             command.Parameters.Add("@qtdProd", MySqlDbType.Int32).Value = vmPedido.Pedido.qtdProd;
             command.Parameters.Add("@descrPedido", MySqlDbType.VarChar).Value = vmPedido.Pedido.descrPedido;
             command.Parameters.Add("@idProd", MySqlDbType.Int32).Value = vmPedido.Produto.idProd;
-            command.Parameters.Add("@idComanda", MySqlDbType.Int32).Value = id;
+/*            command.Parameters.Add("@idComanda", MySqlDbType.Int32).Value = id;*/
 
             command.ExecuteNonQuery();
             db.desconectarDb();
@@ -96,7 +96,7 @@ namespace DragonSushi_ASP.NET.DAO
             return produto;
         }
 
-        public PedidoViewModel Comanda(MySqlDataReader leitor)
+        /*public PedidoViewModel Comanda(MySqlDataReader leitor)
         {
             var produto = new List<PedidoViewModel>();
 
@@ -114,7 +114,7 @@ namespace DragonSushi_ASP.NET.DAO
 
             leitor.Close();
             //return produto;
-        }
+        }*/
 
     }
 }
