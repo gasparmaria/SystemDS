@@ -56,22 +56,21 @@ namespace DragonSushi_ASP.NET.Controllers
         }
 
         // BUSCAR PRATO ESPECIFICO
-
-        public ActionResult spSelectProdutos()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult spSelectProdutos(int id)
         {
             ProdutoDAO dao = new ProdutoDAO();
-            var ProdutoViewModel = dao.spSelectProdutos(id);
-            return View(ProdutoViewModel);
+            var PedidoViewModel = dao.spSelectProdutos(id);
+            return View(PedidoViewModel);
         }
 
-
-
+        [HttpPost]
+        public ActionResult spSelectProdutos(PedidoViewModel vmpedido)
+        {
+            PedidoDAO dao = new PedidoDAO();
+            dao.CadastrarPedido(vmpedido);
+            return RedirectToAction("ConsultarCategoria", "Produto");
+        }
 
         // CADASTRAR PRODUTO (ADICIONAR PRODUTO)
 
