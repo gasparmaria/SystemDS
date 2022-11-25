@@ -45,16 +45,14 @@ namespace DragonSushi_ASP.NET.Controllers
 
             var login = dao.spSelectUsuario(vmusuario.Usuario.login);
 
-            //string usuario = login.ToString();
-            //FileStream createStream = File.Create(fileName);
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
 
             string fileName = "usuariologado.json";
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(vmusuario);
-            //File.WriteAllText(fileName, jsonString);
-
-
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string jsonString = JsonSerializer.Serialize(vmusuario, options);
+            System.IO.File.WriteAllText(fileName, jsonString);
 
             if (login == null)
                 return View();
@@ -85,8 +83,12 @@ namespace DragonSushi_ASP.NET.Controllers
 
 
         // ALTERAR LOGIN
-        public ActionResult EditarPerfil(UsuarioViewModel vmusuario)
+        public ActionResult EditarPerfil()
         {
+            string fileName = "usuariologado.json";
+            string jsonString = System.IO.File.ReadAllText(fileName);
+            UsuarioViewModel vmusuario = JsonSerializer.Deserialize<UsuarioViewModel>(jsonString);
+
             UsuarioDAO dao = new UsuarioDAO();
             var usuario = dao.spSelectUsuario(vmusuario.Usuario.login);
 
@@ -94,11 +96,10 @@ namespace DragonSushi_ASP.NET.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarPerfil2(UsuarioViewModel vmusuario)
+        public ActionResult EditarPerfil(UsuarioViewModel vmusuario)
         {
             UsuarioDAO dao = new UsuarioDAO();
             dao.EditarPerfil(vmusuario);
-
 
             return RedirectToAction("ConsultarCategoria", "Produto");
         }
