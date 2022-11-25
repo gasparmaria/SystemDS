@@ -198,15 +198,47 @@ namespace DragonSushi_ASP.NET.DAO
 
         //SELEC PRODUTO ID
 
-        public ProdutoViewModel spSelectProdutos(int id)
+        public ProdutoViewModel spSelectProdutos(int idProd)
         {
             Database db = new Database();
-            string selectQuery = String.Format("CALL spSelectProdutos('{0}')", id);
+            string selectQuery = String.Format("CALL spSelectProdutos('{0}')", idProd);
             MySqlCommand command = new MySqlCommand(selectQuery, db.conectarDb());
             var dados = command.ExecuteReader();
 
 
-            return listaEstoque(dados).FirstOrDefault();
+            return listaprodutoespecifico(dados).FirstOrDefault();
         }
+
+
+        // GERADOR DE LISTA DE PRODUTOS DO ESTOQUE
+        public List<ProdutoViewModel> listaprodutoespecifico(MySqlDataReader leitor)
+        {
+            var produto = new List<ProdutoViewModel>();
+
+            while (leitor.Read())
+            {
+                var lstProduto = new ProdutoViewModel()
+                {
+                    Produto = new Produto()
+                    {
+                        idProd = Convert.ToInt32(leitor["idProd"]),
+                        nomeProd = Convert.ToString(leitor["nomeProd"]),
+                        imgProd = Convert.ToString(leitor["imgprod"]),
+                        descrProd = Convert.ToString(leitor["descrProd"]),
+                        preco = Convert.ToDecimal(leitor["preco"])
+                        
+                    }
+                };
+                produto.Add(lstProduto);
+            }
+
+            leitor.Close();
+            return produto;
+        }
+
+        // SUBTOTAL 
+
+
+
     }
 }
