@@ -3,6 +3,7 @@ using DragonSushi_ASP.NET.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Web;
 using System.Web.Mvc;
 
@@ -37,16 +38,15 @@ namespace DragonSushi_ASP.NET.Controllers
 
         // HISTORIOCO DE PEDIDOS
 
+        [HttpGet]
         public ActionResult HistoricoPedido()
         {
-            return View();
-        }
+            string fileName = "usuariologado.json";
+            string jsonString = System.IO.File.ReadAllText(fileName);
+            UsuarioViewModel vmusuario = JsonSerializer.Deserialize<UsuarioViewModel>(jsonString);
 
-        [HttpGet]
-        public ActionResult HistoricoPedido(int id)
-        {
             DeliveryDAO dao = new DeliveryDAO();
-            var estoque = dao.spHistoricoPedido(id);
+            var estoque = dao.spHistoricoPedido(vmusuario.Usuario.idUsuario);
 
             return View(estoque);
         }

@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Web.Script.Serialization;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace DragonSushi_ASP.NET.Controllers
 {
@@ -24,11 +25,11 @@ namespace DragonSushi_ASP.NET.Controllers
         }
 
         [HttpPost]
-        public ActionResult CadastrarUsuario(UsuarioViewModel usuario)
+        public ActionResult CadastrarUsuario(UsuarioViewModel vmUsuario)
         {
             UsuarioDAO dao = new UsuarioDAO();
-            dao.cadastrarUsuario(usuario);
-            return View();
+            dao.cadastrarUsuario(vmUsuario);
+            return RedirectToAction("ConsultarCategoria", "Produto"); 
         }
 
         // LOGIN
@@ -44,16 +45,14 @@ namespace DragonSushi_ASP.NET.Controllers
 
             var login = dao.spSelectUsuario(vmusuario.Usuario.login);
 
-            //string usuario = login.ToString();
-            //FileStream createStream = File.Create(fileName);
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
 
             string fileName = "usuariologado.json";
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(vmusuario);
-            File.WriteAllText(fileName, jsonString);
-
-
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string jsonString = JsonSerializer.Serialize(vmusuario, options);
+            System.IO.File.WriteAllText(fileName, jsonString);
 
             if (login == null)
                 return View();
@@ -71,7 +70,7 @@ namespace DragonSushi_ASP.NET.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("ConsultarCardapio", "Produto");
+                    return RedirectToAction("ConsultarCategoria", "Produto");
                 }
             }
         }
@@ -84,8 +83,12 @@ namespace DragonSushi_ASP.NET.Controllers
 
 
         // ALTERAR LOGIN
-        public ActionResult EditarPerfil(UsuarioViewModel vmusuario)
+        public ActionResult EditarPerfil()
         {
+            string fileName = "usuariologado.json";
+            string jsonString = System.IO.File.ReadAllText(fileName);
+            UsuarioViewModel vmusuario = JsonSerializer.Deserialize<UsuarioViewModel>(jsonString);
+
             UsuarioDAO dao = new UsuarioDAO();
             var usuario = dao.spSelectUsuario(vmusuario.Usuario.login);
 
@@ -97,7 +100,6 @@ namespace DragonSushi_ASP.NET.Controllers
         {
             UsuarioDAO dao = new UsuarioDAO();
             dao.EditarPerfil(vmusuario);
-
 
             return RedirectToAction("ConsultarCategoria", "Produto");
         }
