@@ -16,12 +16,16 @@ namespace DragonSushi_ASP.NET.DAO
         {
             Database db = new Database();
 
-            string insertQuery = String.Format("call spCadastrarPedido(@qtdProd,@descrPedido,@idProd,@idComanda)");
+            MySqlCommand cmd = new MySqlCommand("CALL spComandaDelivery()", db.conectarDb());
+            cmd.ExecuteNonQuery();
+            
+
+            string insertQuery = String.Format("CALL spCadastrarPedido(@qtdProd,@descrPedido,@idProd,@idComanda)");
             MySqlCommand command = new MySqlCommand(insertQuery, db.conectarDb());
             command.Parameters.Add("@qtdProd", MySqlDbType.Int32).Value = vmPedido.Pedido.qtdProd;
             command.Parameters.Add("@descrPedido", MySqlDbType.VarChar).Value = vmPedido.Pedido.descrPedido;
             command.Parameters.Add("@idProd", MySqlDbType.Int32).Value = vmPedido.Produto.idProd;
-            command.Parameters.Add("@idComanda", MySqlDbType.Int32).Value = vmPedido.Comanda.idComanda;
+/*            command.Parameters.Add("@idComanda", MySqlDbType.Int32).Value = id;*/
 
             command.ExecuteNonQuery();
             db.desconectarDb();
@@ -91,6 +95,26 @@ namespace DragonSushi_ASP.NET.DAO
             leitor.Close();
             return produto;
         }
+
+        /*public PedidoViewModel Comanda(MySqlDataReader leitor)
+        {
+            var produto = new List<PedidoViewModel>();
+
+            while (leitor.Read())
+            {
+                var lstProduto = new PedidoViewModel()
+                {
+                    Comanda = new Comanda()
+                    {
+                        idComanda = Convert.ToInt32(leitor["idComanda"]),
+                    }
+                };
+                produto.Add(lstProduto);
+            }
+
+            leitor.Close();
+            //return produto;
+        }*/
 
     }
 }
