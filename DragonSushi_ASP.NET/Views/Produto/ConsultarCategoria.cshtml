@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<DragonSushi_ASP.NET.ViewModel.ProdutoViewModel>
 
 
-@{
-    ViewBag.Title = "ConsultarCategoria";
-    Layout = null;
-}
+@{ ViewBag.Title = "ConsultarCategoria";
+                Layout = null; }
 
 
 <!DOCTYPE html>
@@ -57,44 +55,44 @@
                     <iconify-icon class="iconify-icon" icon="eva:search-fill"></iconify-icon>
                 </div>
                 <div class="header__mobile-menu">
-                    <div class="header__mobile-menu__line-one"></div>
-                    <div class="header__mobile-menu__line-two"></div>
-                    <div class="header__mobile-menu__line-three"></div>
+                    <div class="header_mobile-menu_line-one"></div>
+                    <div class="header_mobile-menu_line-two"></div>
+                    <div class="header_mobile-menu_line-three"></div>
                 </div>
             </div>
             <nav class="header__navigation-menu">
-                <ul class="header__navigation-menu__list">
-                    <div class="header__navigation-menu__list__links">
-                    <li class="header__navigation-menu__list__links__item"><a href="#">Home</a></li>
-                    <li class="header__navigation-menu__list__links__item"><a href="#cardapio">Cardápio</a></li>
-                    <li class="header__navigation-menu__list__links__item"><a href="#quem-somos">Quem somos</a></li>
+                <ul class="header_navigation-menu_list">
+                    <div class="header_navigation-menulist_links">
+                    <li class="header_navigation-menulistlinks_item"><a href="#">Home</a></li>
+                    <li class="header_navigation-menulistlinks_item"><a href="#cardapio">Cardápio</a></li>
+                    <li class="header_navigation-menulistlinks_item"><a href="#quem-somos">Quem somos</a></li>
         </div>
-        <div class="header__navigation-menu__list__container">
-            <div class="search-bar header__navigation-menu__list__search-bar">
-                <a class="search-bar__icon header__navigation-menu__list__search-bar__icon" href="#">
+        <div class="header_navigation-menulist_container">
+            <div class="search-bar header_navigation-menulist_search-bar">
+                <a class="search-bar_icon headernavigation-menulistsearch-bar_icon" href="#">
                     <iconify-icon class="iconify-icon" icon="eva:search-fill"></iconify-icon>
                 </a>
-                <input class="search-bar__txt header__navigation-menu__list__search-bar__txt" type="text"
+                <input class="search-bar_txt headernavigation-menulistsearch-bar_txt" type="text"
                        placeholder="O que deseja?">
             </div>
-            <div class="header__navigation-menu__list__buttons">
-                <a class="accent-button header__navigation-menu__list__buttons__item" href="~/Usuario/CadastrarUsuario">Cadastra-se</a>
-                <a class="accent-button header__navigation-menu__list__buttons__item" href="~/Usuario/Login">Entrar</a>
+            <div class="header_navigation-menulist_buttons">
+                <a class="accent-button header_navigation-menulistbuttons_item" href="~/Usuario/CadastrarUsuario">Cadastra-se</a>
+                <a class="accent-button header_navigation-menulistbuttons_item" href="~/Usuario/Login">Entrar</a>
             </div>
         </div>
         </ul>
         </nav>
-        <div class="header__profile__container__tooltip-shopping-cart">
-            <div class="header__profile__shopping-cart">
+        <div class="header_profilecontainer_tooltip-shopping-cart">
+            <div class="header_profile_shopping-cart">
                 <a href="#">
                     <span>
                         <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
                     </span>
                 </a>
             </div>
-            <div class="header__profile__tooltip">
+            <div class="header_profile_tooltip">
                 <iconify-icon class="iconify-icon" icon="gg:profile"></iconify-icon>
-                <div class="header__profile__tooltip__text">
+                <div class="header_profiletooltip_text">
                     <h1>Minha conta</h1>
                     <ul>
                         <li><a href="#">Editar perfil</a></li>
@@ -105,30 +103,25 @@
         </div>
         </div>
         <div class="search-bar-mobile">
-            <div class="search-bar mobile header__navigation-menu__list__search-bar">
-                <a class="search-bar__icon header__navigation-menu__list__search-bar__icon" href="#">
+            <div class="search-bar mobile header_navigation-menulist_search-bar">
+                <a class="search-bar_icon headernavigation-menulistsearch-bar_icon" href="#">
                     <iconify-icon class="iconify-icon" icon="eva:search-fill"></iconify-icon>
                 </a>
-                <input class="search-bar__txt header__navigation-menu__list__search-bar__txt" type="text"
+                <input class="search-bar_txt headernavigation-menulistsearch-bar_txt" type="text"
                        placeholder="O que deseja?">
             </div>
         </div>
     </header>
-=======
-@{ 
-    ViewBag.Title = "ConsultarCategoria";
-}
->>>>>>> feature-system-layout
     <main class="home">
         <section class="hero">
             <div class="container">
                 <div class="hero__text">
-                    <h1 class="hero__text__title">Faça já seu pedido!</h1>
-                    <p class="hero__text__paragraph">
+                    <h1 class="hero_text_title">Faça já seu pedido!</h1>
+                    <p class="hero_text_paragraph">
                         Experimente o melhor do oriente sem sair de casa.<br class="line-break">
                         Veja nossos pratos, bebidas e venha se deliciar!
                     </p>
-                    <a class="accent-button hero__text__link" href="#cardapio">Peça agora <img src="~/images/icon-chopsticks.png" alt=""></a>
+                    <a class="accent-button hero_text_link" href="#cardapio">Peça agora <img src="~/images/icon-chopsticks.png" alt=""></a>
                 </div>
                 <picture class="hero__img">
                     <img src="~/images/home/hero.png" alt="Fazendo sushi">
@@ -139,53 +132,53 @@
             <h1 class="main-dishes__title">PRATOS MAIS VENDIDOS</h1>
             <div class="card-dishes container">
                 <div class="card-dishes__item">
-                    <picture class="card-dishes__item__img">
+                    <picture class="card-dishes_item_img">
                         <a><img src="https://www.dicasdemulher.com.br/wp-content/uploads/2020/01/salmao-grelhado-0.png" alt=""></a>
                     </picture>
-                    <h1 class="card-dishes__item__title">
+                    <h1 class="card-dishes_item_title">
                         Salmão grelhado
                     </h1>
-                    <p class="card-dishes__item__paragraph">
+                    <p class="card-dishes_item_paragraph">
                         Porção de 200g de fatias de salmão grelhado.
                     </p>
-                    <div class="card-dishes__item__info-buy">
-                        <span class="card-dishes__item__info-buy__price">R$ 54.90</span>
-                        <span class="card-dishes__item__info-buy__icon">
-                            <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
+                    <div class="card-dishes_item_info-buy">
+                        <span class="card-dishes_iteminfo-buy_price">R$ 54.90</span>
+                        <span class="card-dishes_iteminfo-buy_icon">
+                            <a href="~/Produto/spSelectProdutos/3"><iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon></a>
                         </span>
                     </div>
                 </div>
                 <div class="card-dishes__item">
-                    <picture class="card-dishes__item__img">
+                    <picture class="card-dishes_item_img">
                         <img src="https://koibc.com.br/cardapios/storage/images/2021/09/temaki-filadelfia.jpg" alt="">
                     </picture>
-                    <h1 class="card-dishes__item__title">
+                    <h1 class="card-dishes_item_title">
                         Temaki de salmão grelhado
                     </h1>
-                    <p class="card-dishes__item__paragraph">
+                    <p class="card-dishes_item_paragraph">
                         Salmão grelhado, cream cheese, cebolinha, arroz e nori.
                     </p>
-                    <div class="card-dishes__item__info-buy">
-                        <span class="card-dishes__item__info-buy__price">R$ 18.99</span>
-                        <span class="card-dishes__item__info-buy__icon">
-                            <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
+                    <div class="card-dishes_item_info-buy">
+                        <span class="card-dishes_iteminfo-buy_price">R$ 18.99</span>
+                        <span class="card-dishes_iteminfo-buy_icon">
+                            <a href="~/Produto/spSelectProdutos/16"><iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon></a>
                         </span>
                     </div>
                 </div>
                 <div class="card-dishes__item">
-                    <picture class="card-dishes__item__img">
+                    <picture class="card-dishes_item_img">
                         <img src="https://koibc.com.br/cardapios/storage/images/2021/09/hot-filadelfia.jpg" alt="">
                     </picture>
-                    <h1 class="card-dishes__item__title">
+                    <h1 class="card-dishes_item_title">
                         Hot roll
                     </h1>
-                    <p class="card-dishes__item__paragraph">
+                    <p class="card-dishes_item_paragraph">
                         8 unidades de sushi de salmão empanado com cream cheese e molho tarê
                     </p>
-                    <div class="card-dishes__item__info-buy">
-                        <span class="card-dishes__item__info-buy__price">R$ 12.90</span>
-                        <span class="card-dishes__item__info-buy__icon">
-                            <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
+                    <div class="card-dishes_item_info-buy">
+                        <span class="card-dishes_iteminfo-buy_price">R$ 12.90</span>
+                        <span class="card-dishes_iteminfo-buy_icon">
+                            <a href="~/Produto/spSelectProdutos/14"><iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon></a>
                         </span>
                     </div>
                 </div>
@@ -205,23 +198,23 @@
                 <div class="card-dishes container">
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 1))
                     {
-                        <div class="card-dishes__item">
-                            <picture class="card-dishes__item__img">
-                                <img src="@item.Produto.imgProd" alt="">
-                            </picture>
-                            <h1 class="card-dishes__item__title">
-                                @item.Produto.nomeProd
-                            </h1>
-                            <p class="card-dishes__item__paragraph">
-                                @item.Produto.descrProd
-                            </p>
-                            <div class="card-dishes__item__info-buy">
-                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes__item__info-buy__icon">
-                                    <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
-                                </span>
-                            </div>
-                        </div>}
+        <div class="card-dishes__item">
+            <picture class="card-dishes_item_img">
+                <img src="@item.Produto.imgProd" alt="">
+            </picture>
+            <h1 class="card-dishes_item_title">
+                @item.Produto.nomeProd
+            </h1>
+            <p class="card-dishes_item_paragraph">
+                @item.Produto.descrProd
+            </p>
+            <div class="card-dishes_item_info-buy">
+                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
+                <span class="card-dishes_iteminfo-buy_icon">
+                    <a href="~/Produto/spSelectProdutos/@item.Produto.idProd"><iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon></a>
+                </span>
+            </div>
+        </div>}
                 </div>
             </section>
             <section class="restaurant-menu__list-dishe">
@@ -232,32 +225,32 @@
 
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 2))
                     {
-                        <div class="card-dishes__item">
-                            <picture class="card-dishes__item__img">
-                                <img src="@item.Produto.imgProd" alt="">
-                            </picture>
-                            <h1 class="card-dishes__item__title">
-                                @item.Produto.nomeProd
-                            </h1>
-                            <p class="card-dishes__item__paragraph">
-                                @item.Produto.descrProd
-                            </p>
-                            <div class="card-dishes__item__info-buy">
-                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes__item__info-buy__icon">
-                                    <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
-                                </span>
-                            </div>
-                        </div>}
+        <div class="card-dishes__item">
+            <picture class="card-dishes_item_img">
+                <img src="@item.Produto.imgProd" alt="">
+            </picture>
+            <h1 class="card-dishes_item_title">
+                @item.Produto.nomeProd
+            </h1>
+            <p class="card-dishes_item_paragraph">
+                @item.Produto.descrProd
+            </p>
+            <div class="card-dishes_item_info-buy">
+                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
+                <span class="card-dishes_iteminfo-buy_icon">
+                    <a href="~/Produto/spSelectProdutos/@item.Produto.idProd"><iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon></a>
+                </span>
+            </div>
+        </div>}
                 </div>
             </section>
             <section class="download-app">
                 <div class="container">
                     <div class="download-app__text">
-                        <h1 class="download-app__text__title">
+                        <h1 class="download-app_text_title">
                             Baixe o nosso App
                         </h1>
-                        <p class="download-app__text__paragraph">
+                        <p class="download-app_text_paragraph">
                             Confira nossos pratos, bebidas<br>e ofertas tudo na palma da sua mão.
                         </p>
                         <span>
@@ -280,23 +273,23 @@
                 <div class="card-dishes container">
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 3))
                     {
-                        <div class="card-dishes__item">
-                            <picture class="card-dishes__item__img">
-                                <img src="@item.Produto.imgProd" alt="">
-                            </picture>
-                            <h1 class="card-dishes__item__title">
-                                @item.Produto.nomeProd
-                            </h1>
-                            <p class="card-dishes__item__paragraph">
-                                @item.Produto.descrProd
-                            </p>
-                            <div class="card-dishes__item__info-buy">
-                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes__item__info-buy__icon">
-                                    <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
-                                </span>
-                            </div>
-                        </div>}
+        <div class="card-dishes__item">
+            <picture class="card-dishes_item_img">
+                <img src="@item.Produto.imgProd" alt="">
+            </picture>
+            <h1 class="card-dishes_item_title">
+                @item.Produto.nomeProd
+            </h1>
+            <p class="card-dishes_item_paragraph">
+                @item.Produto.descrProd
+            </p>
+            <div class="card-dishes_item_info-buy">
+                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
+                <span class="card-dishes_iteminfo-buy_icon">
+                    <a href="~/Produto/spSelectProdutos/@item.Produto.idProd"><iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon></a>
+                </span>
+            </div>
+        </div>}
                 </div>
             </section>
             <section class="restaurant-menu__list-dishe">
@@ -306,24 +299,23 @@
                 <div class="card-dishes container">
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 4))
                     {
-                        <div class="card-dishes__item">
-                            <picture class="card-dishes__item__img">
-                                <img src="@item.Produto.imgProd" alt="">
-                            </picture>
-                            <h1 class="card-dishes__item__title">
-                                @item.Produto.nomeProd
-                            </h1>
-                            <p class="card-dishes__item__paragraph">
-                                @item.Produto.descrProd
-                            </p>
-                            <div class="card-dishes__item__info-buy">
-                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes__item__info-buy__icon">
-                                    <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
-                                </span>
-                            </div>
-                        </div>
-                     }
+        <div class="card-dishes__item">
+            <picture class="card-dishes_item_img">
+                <img src="@item.Produto.imgProd" alt="">
+            </picture>
+            <h1 class="card-dishes_item_title">
+                @item.Produto.nomeProd
+            </h1>
+            <p class="card-dishes_item_paragraph">
+                @item.Produto.descrProd
+            </p>
+            <div class="card-dishes_item_info-buy">
+                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
+                <span class="card-dishes_iteminfo-buy_icon">
+                    <a href="~/Produto/spSelectProdutos/@item.Produto.idProd"><iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon></a>
+                </span>
+            </div>
+        </div>}
                 </div>
             </section>
             <section class="restaurant-menu__list-dishe">
@@ -333,23 +325,23 @@
                 <div class="card-dishes container">
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 5))
                     {
-                        <div class="card-dishes__item">
-                            <picture class="card-dishes__item__img">
-                                <img src="@item.Produto.imgProd" alt="">
-                            </picture>
-                            <h1 class="card-dishes__item__title">
-                                @item.Produto.nomeProd
-                            </h1>
-                            <p class="card-dishes__item__paragraph">
-                                @item.Produto.descrProd
-                            </p>
-                            <div class="card-dishes__item__info-buy">
-                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes__item__info-buy__icon">
-                                    <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
-                                </span>
-                            </div>
-                        </div>}
+        <div class="card-dishes__item">
+            <picture class="card-dishes_item_img">
+                <img src="@item.Produto.imgProd" alt="">
+            </picture>
+            <h1 class="card-dishes_item_title">
+                @item.Produto.nomeProd
+            </h1>
+            <p class="card-dishes_item_paragraph">
+                @item.Produto.descrProd
+            </p>
+            <div class="card-dishes_item_info-buy">
+                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
+                <span class="card-dishes_iteminfo-buy_icon">
+                    <a href="~/Produto/spSelectProdutos/@item.Produto.idProd"><iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon></a>
+                </span>
+            </div>
+        </div>}
                 </div>
             </section>
             <section class="restaurant-menu__list-dishe">
@@ -359,24 +351,23 @@
                 <div class="card-dishes container">
                     @foreach (var item in Model.Where(c => c.Categoria.idCategoria == 6))
                     {
-                        <div class="card-dishes__item">
-                            <picture class="card-dishes__item__img">
-                                <img src="@item.Produto.imgProd" alt="">
-                            </picture>
-                            <h1 class="card-dishes__item__title">
-                                @item.Produto.nomeProd
-                            </h1>
-                            <p class="card-dishes__item__paragraph">
-                                @item.Produto.descrProd
-                            </p>
-                            <div class="card-dishes__item__info-buy">
-                                <span class="card-dishes__item__info-buy__price">R$ @item.Produto.preco</span>
-                                <span class="card-dishes__item__info-buy__icon">
-                                    <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
-                                </span>
-                            </div>
-                        </div>
-                     }
+        <div class="card-dishes__item">
+            <picture class="card-dishes_item_img">
+                <img src="@item.Produto.imgProd" alt="">
+            </picture>
+            <h1 class="card-dishes_item_title">
+                @item.Produto.nomeProd
+            </h1>
+            <p class="card-dishes_item_paragraph">
+                @item.Produto.descrProd
+            </p>
+            <div class="card-dishes_item_info-buy">
+                <span class="card-dishes_iteminfo-buy_price">R$ @item.Produto.preco</span>
+                <span class="card-dishes_iteminfo-buy_icon">
+                    <a href="~/Produto/spSelectProdutos/@item.Produto.idProd"><iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon></a>
+                </span>
+            </div>
+        </div>}
                 </div>
             </section>
         </section>
