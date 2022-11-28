@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    @Styles.Render("~/Content/style.css")
+    @Scripts.Render("~/bundles/modernizr")
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,22 +45,26 @@
     <title>Dragon Sushi - Restaurante Japonês</title>
 </head>
 <body>
-    <main class="manager_page">
-        <div class="manager_container">
-            <h1 class="manager_title">ÁREA DO GERENTE</h1>
+    <main class="employee__page">
+        <div class="manager__container">
+            <h1 class="manager__title">ÁREA DO GERENTE</h1>
 
-            <ul class="manager_page_ul_list">
-                <div class="manager_list">
-                <li class="manager_page_li_list">@Html.ActionLink("CADASTRO DE PRODUTO", "CadastrarProduto", "Produto")</li>
-                <li class="manager_page_li_list">@Html.ActionLink("CADASTRO DE FUNCIONÁRIO", "CadastrarFuncionario", "Funcionario")</li>
-                <li class="manager_page_li_list">@Html.ActionLink("ESTOQUE", "MostrarEstoque", "Produto")</li>
+            <ul class="manager__page__ul__list">
+                <div class="manager__list">
+                <li class="manager__page__li__list">@Html.ActionLink("CADASTRO DE PRODUTO", "CadastrarProduto", "Produto")</li>
+                <li class="manager__page__li__list">@Html.ActionLink("CADASTRO DE FUNCIONÁRIO", "CadastrarFuncionario", "Funcionario")</li>
+                <li class="manager__page__li__list">@Html.ActionLink("ESTOQUE", "MostrarEstoque", "Produto")</li>
         </div>
         </ul>
         </div>
 
-        <img class="img_manager_container" src="~/images/themes/manager-working.png">
+        <img class="img__manager__container" src="~/images/themes/manager-working.png">
 
-        <hr class="line_under_image">
+        <hr class="line__under__image">
     </main>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/script")
 </body>
 </html>

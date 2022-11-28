@@ -1,5 +1,5 @@
 ﻿using DragonSushi_ASP.NET.DAO;
-using DragonSushi_ASP.NET.ViewModel;
+using DragonSushi_ASP.NET.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,28 +10,19 @@ namespace DragonSushi_ASP.NET.Controllers
 {
     public class ClienteController : Controller
     {
-
-        // EDITAR PERFIL (ALTERAR PERFIL)
-
-
-
-        // CADASTRAR CLIENTE (ADICIONAR CLIENTE)
-
+        // CADASTRAR CLIENTE
         public ActionResult CadastrarCliente()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CadastrarCliente(ClienteViewModel vmCliente)
+        public ActionResult CadastrarCliente(Pessoa pessoa)
         {
             ClienteDAO dao = new ClienteDAO();
-            dao.cadastrarCliente(vmCliente);
+            dao.cadastrarCliente(pessoa);
 
             return RedirectToAction("AreaFuncionario", "Funcionario", new { area = "" });
-
         }
-
-
     }
 }

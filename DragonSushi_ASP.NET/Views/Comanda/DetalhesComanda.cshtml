@@ -1,16 +1,70 @@
 ﻿@model IEnumerable<DragonSushi_ASP.NET.ViewModel.ComandaViewModel>
 
 @{ ViewBag.Title = "DetalhesComanda";}
-<section class="table-info">
+
+<main class="commands">
+    <div class="container">
+        <section class="table-info">
+            <div class="table-info__top">
+                <h1 class="table-info__title">002</h1>
+                <p class="table-info__number-table">Mesa 1</p>
+                <ul class="table-info__list">
+                    <li class="table-info__list__item">
+                        <span class="table-info__list__item__amount">2x</span> Nigiri sushi
+                    </li>
+                    <li class="table-info__list__item">
+                        <span class="table-info__list__item__amount">1x</span> Kawaii sushi
+                    </li>
+                    <li class="table-info__list__item">
+                        <span class="table-info__list__item__amount">5x</span> Sushi and chopsticks
+                    </li>
+                    <li class="table-info__list__item">
+                        <span class="table-info__list__item__amount">2x</span> Naruto sushi
+                    </li>
+                    <li class="table-info__list__item">
+                        <span class="table-info__list__item__amount">2x</span> Hot Rolls
+                    </li>
+                    <li class="table-info__list__item">
+                        <span class="table-info__list__item__amount">2x</span> Nigiri sushi
+                    </li>
+                    <li class="table-info__list__item">
+                        <span class="table-info__list__item__amount">1x</span> Kawaii sushi
+                    </li>
+                    <li class="table-info__list__item">
+                        <span class="table-info__list__item__amount">5x</span> Sushi and chopsticks
+                    </li>
+                    <li class="table-info__list__item">
+                        <span class="table-info__list__item__amount">2x</span> Naruto sushi
+                    </li>
+                    <li class="table-info__list__item">
+                        <span class="table-info__list__item__amount">2x</span> Hot Rolls
+                    </li>
+                </ul>
+            </div>
+            <div class="table-info__bottom">
+                <div class="table-info__price-note">
+                    <p class="table-info__prince-note__subtotal"><span class="accent-text">Subtotal:</span> R$150,00</p>
+                    <p class="table-info__prince-note__service-charge"><span class="accent-text">Taxa de serviço:</span> R$15,00</p>
+                    <p class="table-info__prince-note__total"><span class="accent-text total">Total:</span> R$165,00</p>
+                </div>
+                <div class="table-info__price-options">
+                    <iconify-icon icon="carbon:send-alt-filled"></iconify-icon>
+                    <iconify-icon icon="ci:edit"></iconify-icon>
+                    <iconify-icon icon="fa-solid:dollar-sign"></iconify-icon>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+@*<section class="table-info">
     <div class="table-info__top">
-        <h1 class="table-info__title">01</h1>
-        <p class="table-info__number-table">mesa X</p>
+
 
         @foreach (var item in Model)
         {
      
-           <h1>@item.Comanda.idComanda;</h1> 
-           <h2>@item.Comanda.numMesa;</h2>
+           <h1>Número da Comanda: @item.Comanda.idComanda</h1> 
+           <h2>Mesa: @item.Comanda.numMesa</h2>
             if (@item.Comanda.idComanda == @item.Comanda.idComanda) {
                 break;
             }
@@ -24,7 +78,9 @@
             <ul class="table-info__list">
 
                 <li class="table-info_list_item">
-                    <span class="table-info_listitem_amount"> @item.Pedido.qtdProd </span> @item.Pedido.fkProd;
+                    <a href="/Pedido/ExcluirPedido/@item.Pedido.idPedido"><img class="book_cancel_icon" src="~/images/book/cancel-image.png"></a><span class="table-info_listitem_amount"> @item.Pedido.qtdProd X </span> @item.Produto.nomeProd
+
+                    
                 </li>
 
             </ul>
@@ -33,16 +89,19 @@
         </div >
         <div class="table-info__bottom">
         <div class="table-info__price-note">
-            <p class="table-info_prince-note_subtotal"><span class="accent-text">Subtotal:</span> R$0</p>
-            <p class="table-info_prince-note_service-charge"><span class="accent-text">Taxa de serviço:</span> R$10,00</p>
-            <p class="table-info_prince-note_total"><span class="accent-text total">Total:</span> R$0</p>
+            <p class="table-info__prince-note__subtotal"><span class="accent-text">Subtotal:</span> R$0</p>
+            <p class="table-info__prince-note__service-charge"><span class="accent-text">Taxa de serviço:</span> R$10,00</p>
+            <p class="table-info__prince-note__total"><span class="accent-text total">Total:</span> R$0</p>
         </div>
         <div class="table-info__price-options">
-            <a href="">< iconify - icon icon="carbon:send-alt-filled"></iconify-icon></a>
-            <a href="">< iconify - icon icon="ci:edit"></iconify-icon></a>
-            @*<a href="~/Pedido/LancarPedido/@model.Comanda.idComanda"><iconify-icon icon="carbon:send-alt-filled"></iconify-icon></a>
-            <a href="~/Comanda/EditarComanda/@model.Comanda.idComanda"><iconify-icon icon="ci:edit"></iconify-icon></a>*@
-            <a href=""><iconify-icon icon="fa-solid:dollar-sign"></iconify-icon></a>
+            @foreach (var item in Model)
+            {  
+                <a href="~/Comanda/Pagamento/@item.Comanda.idComanda"><iconify-icon icon="fa-solid:dollar-sign"></iconify-icon></a>
+                if (@item.Comanda.idComanda == @item.Comanda.idComanda) {
+                    break;
+                }
+
+            }   
         </div>
     </div>
-</section>
+</section>*@

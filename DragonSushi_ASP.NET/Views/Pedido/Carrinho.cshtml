@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DragonSushi_ASP.NET.ViewModel.PedidoViewModel>
+
+@{
+    ViewBag.Title = "Carrinho";
+}
+
+<main class="shopping-cart">
+    <div class="container">
+        <h1 class="shopping-cart__title">CARRINHO DE COMPRAS</h1>
+    </div>
+    <div class="container">
+        <!-- Carrinho de compras -->
+        <section class="shopping-cart__delivery">
+            <!-- Item carrinho de compras -->
+            @{
+                List<decimal> valores = new List<decimal>();
+                foreach (var item in Model)
+                {
+                    <div class="shopping-cart__delivery__item">
+                        <div class="shopping-cart__delivery__item__container-img">
+                            <img src="@item.Produto.imgProd" alt="">
+                        </div>
+                        <div class="shopping-cart__delivery__item__text">
+                            <h2 class="shopping-cart__delivery__item__text__title">(@item.Pedido.qtdProd) @item.Produto.nomeProd</h2>
+                            <p class="shopping-cart__delivery__item__text__paragraph">
+                                @item.Pedido.descrPedido
+                            </p>
+                            <div class="shopping-cart__delivery__item__price">
+                                <p>@item.Produto.preco</p>                        
+                            </div>
+                        </div>
+                    </div>
+                    decimal subtotal = item.Pedido.qtdProd * item.Produto.preco;
+                    valores.Add(subtotal);
+                }
+                decimal total = valores.Sum();
+            }
+        </section>
+
+        <!-- Informações do pedido -->
+        <section class="shopping-cart__delivery__info">
+            <p><span class="text__subtotal">Subtotal</span><span>R$@total</span></p>
+            <p><span class="text__delivery">Taxa de entrega </span><span>R$5,00</span></p>
+            @{
+                decimal totaltaxa = total + 5;
+            }
+            <p><span class="text__total">Total </span><span class="text__amount">R$@totaltaxa</span></p>
+        </section>
+
+        <div class="form-container-flex-button">
+            <a href="~/Delivery/FinalizarPedido/@totaltaxa">
+                <button class="form__button">
+                    Finalizar pedido
+                </button>
+            </a>
+        </div>
+    </div>
+</main>

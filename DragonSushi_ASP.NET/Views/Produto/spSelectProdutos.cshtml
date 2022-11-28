@@ -2,74 +2,48 @@
 
 @{
     ViewBag.Title = "spSelectProdutos";
-    //Layout = null;
 }
-
-
-
-@*<h2>spSelectProdutos</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
-
-
-    <tr>
-        <td>
-        <td> @Html.DisplayFor(model => model.Produto.nomeProd)</td>
-        <td> @Html.DisplayFor(model => model.Produto.imgProd)</td>
-        <td> @Html.DisplayFor(model => model.Produto.descrProd)</td>
-        </td>
-    </tr>
-
-
-</table>*@
-
-<body class="specific-dish-page">
-    <main class="specific-dishe">
-        <div class="container">
-            <h1 class="specific-dishe__title">@Html.DisplayFor(model => model.Produto.nomeProd)</h1>
+<main class="specific-dishe">
+    <div class="container">
+        <h1 class="specific-dishe__title">@Html.DisplayFor(model => model.Produto.nomeProd)</h1>
+    </div>
+    <div class="container flex">
+        <div class="specific-dishe__container-img">
+            <img src="@Html.DisplayFor(model => model.Produto.imgProd)" alt="">
         </div>
+        <div class="specific-dishe__description">
+            <p>
+                @Html.DisplayFor(model => model.Produto.descrProd)
+            </p>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Produto.idProd)
         <div class="container flex">
-            <div class="specific-dishe__container-img">
-                <img src="@Html.DisplayFor(model => model.Produto.imgProd)" alt="">
+            <div class="specific-dishe__note">
+                <h2 class="specific-dishe__note__title">OBSERVAÇÃO:</h2>
+                @Html.TextAreaFor(model => model.Pedido.descrPedido, new { @class = "specific-dishe__note__textarea" })
             </div>
-            <div class="specific-dishe__description">
-                <p>
-                    @Html.DisplayFor(model => model.Produto.descrProd)
-                </p>
-            </div>
-        </div>
-        <div class="container flex">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.Produto.idProd)
-                <div class="specific-dishe__note">
-                    <h2 class="specific-dishe__note__title">OBSERVAÇÃO:</h2>
-                    @Html.TextAreaFor(model => model.Pedido.descrPedido, new { htmlAttributes = new { @placeholder = "Coloque sua observação" } })
+            <div class="specific-dishe__price">
+                <div class="specific-dishe__price__unitary">
+                    <p>@Html.DisplayFor(model => model.Produto.preco)</p>
                 </div>
-                <div class="specific-dishe__price">
-                    <div class="specific-dishe__price__unitary">
-                        <p>@Html.DisplayFor(model => model.Produto.preco)</p>
+                <div class="specific-dishe__price__subtotal">
+                    <p>Subtotal: R$ 168,00</p>
+                    <div class="amount-dishe-item">
+                        <span class="amount-dishe-item__subtract"></span>
+                        @Html.EditorFor(model => model.Pedido.qtdProd, new { htmlAttributes = new { @type = "number", @class = "amount-dishe-item__current", @readonly = "readonly", @value = "model.Pedido.qtdProd" } })
+                        <span class="amount-dishe-item__add"></span>
                     </div>
-                    <div class="specific-dishe__price__subtotal">
-                        <p>Subtotal: R$ 168,00</p>
-                        <div class="amount-dishe-item">
-                            <span class="amount-dishe-item__subtract"></span>
-                            <input type="number" value="1" class="amount-dishe-item__current" readonly></input>
-                            <span class="amount-dishe-item__add"></span>
-                        </div>
-                    </div>
+                </div>
 
-                    <input type="submit" value="Adicionar ao carrinho" class="accent-button" />
-                </div>
-            }
+                <input type="submit" value="Adicionar ao carrinho" class="accent-button" />
+            </div>
         </div>
+     }
+
     </main>
-</body>

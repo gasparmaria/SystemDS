@@ -1,7 +1,7 @@
-﻿@model DragonSushi_ASP.NET.Models.Pessoa
+﻿@model  IEnumerable<DragonSushi_ASP.NET.ViewModel.PedidoViewModel>
 
 @{
-    ViewBag.Title = "CadastrarCliente";
+    ViewBag.Title = "LançarPedido";
     Layout = null;
 }
 
@@ -33,42 +33,57 @@
     <title>Dragon Sushi - Restaurante Japonês</title>
 </head>
 <body>
-    <main class="client__register">
+ 
+    <main class="product__register">
         <div class="form">
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-                <h1 class="form__title">Cadastro de cliente</h1>
-                <div class="form__box">
-                    @Html.LabelFor(model => model.nomePessoa, htmlAttributes: new { @class = "form__box__label" })
-                    <div class="form__box__input-icon">
-                        @Html.EditorFor(model => model.nomePessoa, new { htmlAttributes = new { @placeholder = "Informe o nome" } })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                    </div>
-                    @Html.ValidationMessageFor(model => model.nomePessoa, "", new { @class = "text-danger" })
-                </div>
+                <h1 class="form__title">Lançar pedido</h1>
                 <div class="form__box">
-                    @Html.LabelFor(model => model.telefone, htmlAttributes: new { @class = "form__box__label" })
                     <div class="form__box__input-icon">
-                        @Html.EditorFor(model => model.telefone, new { htmlAttributes = new { @placeholder = "Informe o telefone" } })
-                        @Html.ValidationMessageFor(model => model.telefone, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form__box">
-                    @Html.LabelFor(model => model.cpf, htmlAttributes: new { @class = "form__box__label" })
-                    <div class="form__box__input-icon">
-                        @Html.EditorFor(model => model.cpf, new { htmlAttributes = new { @placeholder = "Informe o CPF" } })
-                        @Html.ValidationMessageFor(model => model.cpf, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => item.Comanda.idComanda, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
                 </div>
 
-                <input type="submit" value="Cadastrar" class="form__button align-center" />
+                <div class="form__box">
+                    <div class="form_box_input-icon">
+                        <select name="Produto">
+                            @foreach (var itemitem in Model)
+                            {
+                                <option value="@itemitem.Produto.idProd">
+                                    @itemitem.Produto.nomeProd
+                                </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form__box">
+                    <div class="form__box__input-icon">
+                        @Html.EditorFor(model => item.Pedido.descrPedido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Descrição" } })
+                    </div>
+                </div>
+
+                <div class="form__box">
+                    <div class="form__box__input-icon">
+                        @Html.EditorFor(model => item.Pedido.qtdProd, new { htmlAttributes = new { @class = "form-control", } })
+                    </div>
+                </div>
+
+                <div class="form-container-flex">
+                    <input type="submit" value="Salvar" class="form__button" />
+                    <a class="form__button" href="~/Comanda/ExibirComanda">Voltar</a>
+                </div>
             }
         </div>
     </main>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/script")
-
 </body>
 </html>
+

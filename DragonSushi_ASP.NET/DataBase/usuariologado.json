@@ -1,0 +1,18 @@
+{
+  "Usuario": {
+    "idUsuario": 4,
+    "login": "paulista",
+    "senha": "vargemgrande",
+    "novaSenha": null,
+    "confirmarSenha": null,
+    "fkPessoa": 0,
+    "ocupacao": 0
+  },
+  "Pessoa": {
+    "idPessoa": 4,
+    "nomePessoa": "Tonh\u00E3o da Borracharia",
+    "telefone": "(11) 93245-2264",
+    "cpf": "229.333.248-22",
+    "ocupacao": 3
+  }
+}

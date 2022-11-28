@@ -16,19 +16,32 @@ namespace DragonSushi_ASP.NET.DAO
         {
             Database db = new Database();
 
-            MySqlCommand cmd = new MySqlCommand("CALL spComandaDelivery()", db.conectarDb());
-            cmd.ExecuteNonQuery();
-            
+            int id = ConsultarComanda();
+
+
 
             string insertQuery = String.Format("CALL spCadastrarPedido(@qtdProd,@descrPedido,@idProd,@idComanda)");
             MySqlCommand command = new MySqlCommand(insertQuery, db.conectarDb());
             command.Parameters.Add("@qtdProd", MySqlDbType.Int32).Value = vmPedido.Pedido.qtdProd;
             command.Parameters.Add("@descrPedido", MySqlDbType.VarChar).Value = vmPedido.Pedido.descrPedido;
             command.Parameters.Add("@idProd", MySqlDbType.Int32).Value = vmPedido.Produto.idProd;
-/*            command.Parameters.Add("@idComanda", MySqlDbType.Int32).Value = id;*/
+            command.Parameters.Add("@idComanda", MySqlDbType.Int32).Value = id;
 
             command.ExecuteNonQuery();
             db.desconectarDb();
+        }
+
+        public int ConsultarComanda()
+        {
+            Database db = new Database();
+
+            string strQuery = string.Format("CALL spComandaDeliveryS();");
+            MySqlCommand exibir = new MySqlCommand(strQuery, db.conectarDb());
+            var leitor = exibir.ExecuteReader();
+            leitor.Read();
+            int id = Convert.ToInt32(leitor["idComanda"]);
+            return id;
+
         }
 
         // EXCLUIR PEDIDO
@@ -96,7 +109,20 @@ namespace DragonSushi_ASP.NET.DAO
             return produto;
         }
 
-        /*public PedidoViewModel Comanda(MySqlDataReader leitor)
+        public List<PedidoViewModel> Carrinho()
+        {
+            int id = ConsultarComanda();
+
+            Database db = new Database();
+            {
+                string strQuery = string.Format("CALL spPedidosComanda('{0}');", id);
+                MySqlCommand exibir = new MySqlCommand(strQuery, db.conectarDb());
+                var leitor = exibir.ExecuteReader();
+                return listaCarrinho(leitor);
+            }
+        }
+
+        public List<PedidoViewModel> listaCarrinho(MySqlDataReader leitor)
         {
             var produto = new List<PedidoViewModel>();
 
@@ -104,17 +130,41 @@ namespace DragonSushi_ASP.NET.DAO
             {
                 var lstProduto = new PedidoViewModel()
                 {
-                    Comanda = new Comanda()
+                    Pedido = new Pedido()
                     {
-                        idComanda = Convert.ToInt32(leitor["idComanda"]),
-                    }
+                        qtdProd = Convert.ToInt32(leitor["qtdProd"]),
+                        descrPedido = Convert.ToString(leitor["descrPedido"])
+                    },
+
+                    Produto = new Produto()
+                    {
+                        nomeProd = Convert.ToString(leitor["nomeProd"]),
+                        preco = Convert.ToDecimal(leitor["preco"]),                      
+                        imgProd = Convert.ToString(leitor["imgProd"])
+                    },                
                 };
                 produto.Add(lstProduto);
             }
 
             leitor.Close();
-            //return produto;
-        }*/
+            return produto;
+        }
 
+        // LANÇAR PEDIDO
+        public void LançarPedido(PedidoViewModel vmPedido)
+        {
+            Database db = new Database();
+
+            string insertQuery = String.Format("CALL spCadastrarPedido(@qtdProd,@descrPedido,@idProd,@idComanda)");
+            MySqlCommand command = new MySqlCommand(insertQuery, db.conectarDb());
+            command.Parameters.Add("@qtdProd", MySqlDbType.Int32).Value = vmPedido.Pedido.qtdProd;
+            command.Parameters.Add("@descrPedido", MySqlDbType.VarChar).Value = vmPedido.Pedido.descrPedido;
+            command.Parameters.Add("@idProd", MySqlDbType.Int32).Value = vmPedido.Produto.idProd;
+            command.Parameters.Add("@idComanda", MySqlDbType.Int32).Value = vmPedido.Comanda.idComanda;
+
+            command.ExecuteNonQuery();
+            db.desconectarDb();
+        }
+        // CONSULTAR PEDIDO PELA ID 
     }
 }

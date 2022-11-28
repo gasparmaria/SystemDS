@@ -17,16 +17,14 @@ namespace DragonSushi_ASP.NET.Models
 
         [Display(Name = "Telefone")]
         [Required(ErrorMessage = "Informe seu telefone")]
-        [MaxLength(15, ErrorMessage = "O nome deve conter no máximo 15 caracteres")]
+        [MaxLength(15, ErrorMessage = "O telefone deve conter no máximo 15 caracteres")]
         public string telefone { get; set; }
 
         [Display(Name = "CPF")]
         [Required(ErrorMessage = "Informe seu CPF")]
-        [MaxLength(14, ErrorMessage = "O nome deve conter no máximo 14 caracteres")]
+        [MaxLength(14, ErrorMessage = "O CPF deve conter no máximo 14 caracteres")]
         public string cpf { get; set; }
-
-        [Display(Name = "Ocupação")]
-        [Required(ErrorMessage = "Informe sua ocupação")]
+        
         public int ocupacao { get; set; }
     }
 }

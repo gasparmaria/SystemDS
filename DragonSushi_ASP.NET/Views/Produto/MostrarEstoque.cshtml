@@ -1,210 +1,68 @@
 ﻿@model IEnumerable<DragonSushi_ASP.NET.ViewModel.ProdutoViewModel>
 
-@{ ViewBag.Title = "MostrarEstoque";
+@{
+    ViewBag.Title = "MostrarEstoque";
     Layout = null;
-    }
+
+    @Styles.Render("~/Content/style.css")
+    @Scripts.Render("~/bundles/modernizr")
 
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+}
 
-    <meta name="keywords" content="Restaurante, Japonês, Delivery, Sushi, Temaki, ">
-    <meta name="description" content="Faça já seu pedido na Dragon Sushi! Confira nossos pratos, ofertas e muito mais!">
-    <meta name="author" content="Gabriel S. Evangelista, Henrique R. Pereira, Guilherme Ferreira, Gustavo Basilio, Maria Eduarda G. Lima, Guilherme Lemes">
+<main class="employee__inventory__page">
+    <div class="inventory__title employee-inventory__title">
+        <a>Estoque</a>
+    </div>
 
-    <link rel="stylesheet" type="text/css" href="~/Content/style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <div class="content__header">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+        <div class="employee__inventory__search">
 
-    <!--
-        Fonts: Montserrat, Roboto and Patua One
-        font-family: 'Montserrat', sans-serif;
-          - Font weight: 300, 400, 600 and 70
-        font-family: 'Roboto', sans-serif;
-          - Font weight: 300, 400 and 700
-        font-family: 'Patua One', cursive;
-          - Font weight: 400
-        font-family: 'Open Sans', sans-serif;
-          - Font weight: 300, 400 and 700
-    -->
+            <iconify-icon class="iconify-icon-book-page" icon="eva:search-fill"></iconify-icon>
 
-    <script defer src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-    <script defer src="js/script.js"></script>
+            <input class="employee__inventory__search__bar" type="text" placeholder="Buscar produto">
+        </div>
 
-    <title>Dragon Sushi - Restaurante Japonês</title>
-</head>
-<body>
-    <header class=" header">
-        <div class="container">
-            <div class="header__logo">
-                <img src="~/images/logo.png" alt="">
-            </div>
-            <div class="header__container-menu-icon">
-                <div class="header__search-bar-icon">
-                    <iconify-icon class="iconify-icon" icon="eva:search-fill"></iconify-icon>
+        <a href="~/Reserva/CadastrarReserva"><button class="btn__register__product">Cadastrar produto</button></a>
+    </div>
+
+    <div class="employee__inventory__content">
+        <div class="employee__inventory__box">
+            <div class="employee__inventory__header">
+                <div class="id__container">
+                    <a>#</a>
                 </div>
-                <div class="header__mobile-menu">
-                    <div class="header_mobile-menu_line-one"></div>
-                    <div class="header_mobile-menu_line-two"></div>
-                    <div class="header_mobile-menu_line-three"></div>
+                <div class="name__container">
+                    <a>Nome</a>
+                </div>
+                <div class="quantity__container">
+                    <a>Quantidade</a>
                 </div>
             </div>
-            <nav class="header__navigation-menu">
-                <ul class="header_navigation-menu_list">
-                    <div class="header_navigation-menulist_links">
-                    <li class="header_navigation-menulistlinks_item"><a href="#">Home</a></li>
-                    <li class="header_navigation-menulistlinks_item"><a href="#cardapio">Cardápio</a></li>
-                    <li class="header_navigation-menulistlinks_item"><a href="#quem-somos">Quem somos</a></li>
-        </div>
-        <div class="header_navigation-menulist_container">
-            <div class="search-bar header_navigation-menulist_search-bar">
-                <a class="search-bar_icon headernavigation-menulistsearch-bar_icon" href="#">
-                    <iconify-icon class="iconify-icon" icon="eva:search-fill"></iconify-icon>
-                </a>
-                <input class="search-bar_txt headernavigation-menulistsearch-bar_txt" type="text"
-                       placeholder="O que deseja?">
-            </div>
-            <div class="header_navigation-menulist_buttons">
-                <a class="accent-button header_navigation-menulistbuttons_item" href="#">Cadastra-se</a>
-                <a class="accent-button header_navigation-menulistbuttons_item" href="#">Entrar</a>
-            </div>
-        </div>
-        </ul>
-        </nav>
-        <div class="header_profilecontainer_tooltip-shopping-cart">
-            <div class="header_profile_shopping-cart">
-                <a href="#">
-                    <span>
-                        <iconify-icon class="icon-iconify" icon="entypo:shopping-cart"></iconify-icon>
-                    </span>
-                </a>
-            </div>
-            <div class="header_profile_tooltip">
-                <iconify-icon class="iconify-icon" icon="gg:profile"></iconify-icon>
-                <div class="header_profiletooltip_text">
-                    <h1>Minha conta</h1>
-                    <ul>
-                        <li><a href="#">Editar perfil</a></li>
-                        <li><a href="#">Histórico de pedidos</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="search-bar-mobile">
-            <div class="search-bar mobile header_navigation-menulist_search-bar">
-                <a class="search-bar_icon headernavigation-menulistsearch-bar_icon" href="#">
-                    <iconify-icon class="iconify-icon" icon="eva:search-fill"></iconify-icon>
-                </a>
-                <input class="search-bar_txt headernavigation-menulistsearch-bar_txt" type="text"
-                       placeholder="O que deseja?">
-            </div>
-        </div>
-    </header>
-    <main class="employee_inventory_page">
-        <div class="inventory_title employee-inventory_title">
-            <a>Estoque</a>
-        </div>
 
-        <div class="content_header">
-
-            <div class="employee_inventory_search">
-
-                <iconify-icon class="iconify-icon-book-page" icon="eva:search-fill"></iconify-icon>
-
-                <input class="employee_inventory_search_bar" type="text" placeholder="Buscar produto">
-            </div>
-
-            <a href="~/Reserva/CadastrarReserva"><button class="btn_register_product">Cadastrar produto</button></a>
-        </div>
-
-        <div class="employee_inventory_content">
-            <div class="employee_inventory_box">
-                <div class="employee_inventory_header">
-                    <div class="id_container">
-                        <a>#</a>
+            @foreach (var item in Model)
+            {
+                <div class="box__itens">
+                    <div class="id__container">
+                        <a>@item.Produto.idProd</a>
                     </div>
-                    <div class="name_container">
-                        <a>Nome</a>
+                    <div class="name__container">
+                        <a>@item.Produto.nomeProd</a>
                     </div>
-                    <div class="quantity_container">
-                        <a>Quantidade</a>
+                    <div class="quantity__container">
+                        <a>@item.Produto.qtdProd</a>
                     </div>
-                </div>
+                    <div class="img__container">
+                        <a href="/Produto/EditarProduto/@item.Produto.idProd"><img class="employee__inventory__edit__icon" src="~/images/employee-inventory/edit-image.png"></a>
+                    </div>
+                </div>}
 
-                @foreach (var item in Model)
-                {
-    <div class="box_itens">
-        <div class="id_container">
-            <a>@item.Produto.idProd</a>
         </div>
-        <div class="name_container">
-            <a>@item.Produto.nomeProd</a>
-        </div>
-        <div class="quantity_container">
-            <a>@item.Produto.qtdProd</a>
-        </div>
-        <div class="img_container">
-            <a href="/Produto/EditarProduto/@item.Produto.idProd"><img class="employee_inventory_edit_icon" src="/images/employee-inventory/edit-image.png"></a>
-        </div>
-    </div>}
+    </div>
+</main>
 
-            </div>
-        </div>
-    </main>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/script")
 
-
-    <footer class="footer">
-        <div class="footer__container-img">
-            <img src="~/images/logo.png" alt="">
-        </div>
-        <div class="container">
-            <h1 class="footer__title">DRAGON SUSHI</h1>
-        </div>
-        <div class="container">
-            <div class="footer__info">
-                <div class="footer_info_links">
-                    <h2 class="footer_info_title">Links</h2>
-                    <ul class="footer_infolinks_list">
-                        <li><a href="#">> Home</a></li>
-                        <li><a href="#cardapio">> Cardápio</a></li>
-                        <li><a href="#quem-somos">> Quem Somos</a></li>
-                    </ul>
-                </div>
-                <div class="footer_info_social">
-                    <h2 class="footer_info_title">Social</h2>
-                    <ul class="footer_infolinks_list">
-                        <li><a href="#">> Instagram</a></li>
-                    </ul>
-                </div>
-                <div class="footer_info_address">
-                    <h2 class="footer_info_title">Endereço</h2>
-                    <ul class="footer_infolinks_list">
-                        <li>R. Guiapá, 678, Villa Leopoldina,<br> São Paulo - SP.</li>
-                        <li>Telefone: (11) 3834-4111</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container footer__copyright">
-            <p class="footer__all-rights-reserved">
-                Copyright © 2022 Dragon Sushi | Todos os Direitos Reservados
-            </p>
-            <p class="footer__developers">
-                Desenvolvimento do Website: Westen
-            </p>
-        </div>
-    </footer>
-</body>
-</html>

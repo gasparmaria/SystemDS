@@ -1,0 +1,171 @@
+﻿@model DragonSushi_ASP.NET.ViewModel.DeliveryViewModel
+
+@{
+    ViewBag.Title = "FinalizarPedido";
+}
+<div class="container">
+    <h1 class="shopping-cart__title">CARRINHO DE COMPRAS</h1>
+</div>
+<div class="container">
+    <!-- Carrinho de compras -->
+    <section class="shopping-cart__delivery">
+        <!-- Item carrinho de compras -->
+        <div class="shopping-cart__delivery__item">
+            <div class="shopping-cart__delivery__item__container-img">
+                <img src="images/home/prato-1.jpg" alt="">
+            </div>
+            <div class="shopping-cart__delivery__item__text">
+                <h2 class="shopping-cart__delivery__item__text__title">Kawaii Sushi</h2>
+                <p class="shopping-cart__delivery__item__text__paragraph">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
+                </p>
+                <div class="shopping-cart__delivery__item__price">
+                    <p>R$ 84,00</p>
+                    <div class="amount-dishe-item">
+                        <span class="amount-dishe-item__subtract"></span>
+                        <input type="number" value="1" class="amount-dishe-item__current" readonly></input>
+                        <span class="amount-dishe-item__add"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shopping-cart__delivery__item">
+            <div class="shopping-cart__delivery__item__container-img">
+                <img src="images/home/prato-1.jpg" alt="">
+            </div>
+            <div class="shopping-cart__delivery__item__text">
+                <h2 class="shopping-cart__delivery__item__text__title">Kawaii Sushi</h2>
+                <p class="shopping-cart__delivery__item__text__paragraph">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
+                </p>
+                <div class="shopping-cart__delivery__item__price">
+                    <p>R$ 84,00</p>
+                    <div class="amount-dishe-item">
+                        <span class="amount-dishe-item__subtract"></span>
+                        <input type="number" value="1" class="amount-dishe-item__current" readonly></input>
+                        <span class="amount-dishe-item__add"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shopping-cart__delivery__item">
+            <div class="shopping-cart__delivery__item__container-img">
+                <img src="images/home/prato-1.jpg" alt="">
+            </div>
+            <div class="shopping-cart__delivery__item__text">
+                <h2 class="shopping-cart__delivery__item__text__title">Kawaii Sushi</h2>
+                <p class="shopping-cart__delivery__item__text__paragraph">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis
+                </p>
+                <div class="shopping-cart__delivery__item__price">
+                    <p>R$ 84,00</p>
+                    <div class="amount-dishe-item">
+                        <span class="amount-dishe-item__subtract"></span>
+                        <input type="number" value="1" class="amount-dishe-item__current" readonly></input>
+                        <span class="amount-dishe-item__add"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Informações do pedido -->
+<section class="shopping-cart__delivery__info">
+    <p><span class="text__subtotal">Subtotal</span><span>R$ 200,00</span></p>
+    <p><span class="text__delivery">Taxa de entrega </span><span>R$ 5,00</span></p>
+    <p><span class="text__total">Total </span><span class="text__amount">R$ 205,00</span></p>
+</section>
+
+<section class="container shopping-cart__delivery__form-payment-address">
+    <div action="" class="form">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Pagamento.total)
+            <h2 class="shopping-cart__delivery__form-payment-address__title">Formas de pagamento</h2>
+            <div class="shopping-cart__delivery__form-payment-address__payment-options">
+                <label class="radio-input-box">
+                    Cartão de crédito
+                    @Html.RadioButtonFor(model => model.FormaPg.formaPag, "Cartão de crédito", new { name = "radio", value = "Cartão de crédito" })
+                    <span class="radio-icon-checkmark"></span>
+                </label>
+                <label class="radio-input-box">
+                    Cartão de débito
+                    @Html.RadioButtonFor(model => model.FormaPg.formaPag, "Cartão de débito", new { name = "radio", value = "Cartão de débito" })
+                    <span class="radio-icon-checkmark"></span>
+                </label>
+                <label class="radio-input-box">
+                    Vale refeição
+                    @Html.RadioButtonFor(model => model.FormaPg.formaPag, "Vale refeição", new { name = "radio", value = "Vale refeição" })
+                    <span class="radio-icon-checkmark"></span>
+                </label>
+                <label class="radio-input-box">
+                    Dinheiro
+                    @Html.RadioButtonFor(model => model.FormaPg.formaPag, "Dinheiro", new { name = "radio", value = "Dinheiro" })
+                    <span class="radio-icon-checkmark"></span>
+                </label>
+                <label class="radio-input-box">
+                    Pix
+                    @Html.RadioButtonFor(model => model.FormaPg.formaPag, "Pix", new { name = "radio", value = "Pix" })
+                    <span class="radio-icon-checkmark"></span>
+                </label>
+            </div>
+            <h2 class="shopping-cart__delivery__form-payment-address__title">Endereço</h2>
+            <div class="background-address">
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Endereco.rua, htmlAttributes: new { @class = "form__box__label", @for = "public-place" })
+                    <div class="form__box__input-icon">
+                        @Html.EditorFor(model => model.Endereco.rua, new { htmlAttributes = new { id = "public-place", @placeholder = "Informe seu logradouro" } })
+                        @Html.ValidationMessageFor(model => model.Endereco.rua, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form__box">
+                    @Html.LabelFor(model => model.Delivery.descrEndereco, htmlAttributes: new { @class = "form__box__label", @for = "complement" })
+                    <div class="form__box__input-icon">
+                        @Html.EditorFor(model => model.Delivery.descrEndereco, new
+                        {
+                            htmlAttributes = new { id = "complement", @placeholder = "Informe o complemento, se houver" }
+})
+                        @Html.ValidationMessageFor(model => model.Delivery.descrEndereco, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-container-flex">
+                    <div class="form__box">
+                        @Html.LabelFor(model => model.Delivery.numEndereco, htmlAttributes: new { @class = "form__box__label", @for = "number" })
+                        <div class="form__box__input-icon">
+                            @Html.EditorFor(model => model.Delivery.numEndereco, new { htmlAttributes = new { id = "number", @placeholder = "Informe o número do local" } })
+                            @Html.ValidationMessageFor(model => model.Delivery.numEndereco, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form__box">
+                        @Html.LabelFor(model => model.Bairro.bairro, htmlAttributes: new { @class = "form__box__label", @for = "district" })
+                        <div class="form__box__input-icon">
+                            @Html.EditorFor(model => model.Bairro.bairro, new { htmlAttributes = new { id = "district", @placeholder = "Informe o bairro" } })
+                            @Html.ValidationMessageFor(model => model.Bairro.bairro, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-container-flex">
+                    <div class="form__box">
+                        @Html.LabelFor(model => model.Cidade.cidade, htmlAttributes: new { @class = "form__box__label", @for = "city" })
+                        <div class="form__box__input-icon">
+                            @Html.EditorFor(model => model.Cidade.cidade, new { htmlAttributes = new { id = "city", @placeholder = "Informe a cidade" } })
+                            @Html.ValidationMessageFor(model => model.Cidade.cidade, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form__box">
+                        @Html.LabelFor(model => model.Estado.idEstado, htmlAttributes: new { @class = "form__box__label", @for = "uf" })
+                        <div class="form__box__input-icon">
+                            @Html.EditorFor(model => model.Estado.idEstado, new { htmlAttributes = new { id = "uf", @placeholder = "Informe a UF" } })
+                            @Html.ValidationMessageFor(model => model.Estado.idEstado, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-container-flex-button">
+                <input type="submit" value="Finalizar pedido" class="form__button form__button-edding-delivery" />
+            </div>
+        }
+    </div>
+</section>

@@ -86,6 +86,11 @@ namespace DragonSushi_ASP.NET.DAO
                     Pedido = new Pedido()
                     {
                         qtdProd = Convert.ToInt32(leitor["qtdProd"])
+                    },
+                    Produto = new Produto()
+                    {
+                        nomeProd = Convert.ToString(leitor["nomeProd"])
+
                     }
                 };
                 comanda.Add(lstComanda);

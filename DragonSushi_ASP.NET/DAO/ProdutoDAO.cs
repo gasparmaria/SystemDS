@@ -83,6 +83,15 @@ namespace DragonSushi_ASP.NET.DAO
             return listaCardapio(leitor);
         }
 
+        // LISTAR PRODUTOS DO CARDÁPIO
+        public List<PedidoViewModel> ExibirCombo()
+        {
+            Database db = new Database();
+            MySqlCommand exibir = new MySqlCommand("call spExibirCardapio()", db.conectarDb());
+            var leitor = exibir.ExecuteReader();
+            return listaprodutoespecifico(leitor);
+        }
+
         // LISTAR CARDÁPIO ATRAVÉS DA CATEGORIA
         public List<ProdutoViewModel> ConsultarCategoria(int fkCategoria)
         {
@@ -234,7 +243,8 @@ namespace DragonSushi_ASP.NET.DAO
             return produto;
         }
 
-        // SUBTOTAL 
+        // Li
+       
 
 
 

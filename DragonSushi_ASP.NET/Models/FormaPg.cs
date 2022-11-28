@@ -8,6 +8,6 @@ namespace DragonSushi_ASP.NET.Models
     public class FormaPg
     {
         public int idFormaPag { get; set; }
-        public string FormaPag { get; set; }
+        public string formaPag { get; set; }
     }
 }

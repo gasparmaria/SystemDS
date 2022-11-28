@@ -11,7 +11,5 @@ namespace DragonSushi_ASP.NET.ViewModel
         public Usuario Usuario { get; set; }
 
         public Pessoa Pessoa { get; set; }
-
-        public string urlRetorno { get; set; }
     }
 }

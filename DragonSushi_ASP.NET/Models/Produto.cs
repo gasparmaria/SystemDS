@@ -8,17 +8,17 @@ namespace DragonSushi_ASP.NET.Models
 {
     public class Produto
     {
-
         public int idProd { get; set; }
 
         [Display(Name = "Nome")]
-        [Required(ErrorMessage = "Informe o nome")]
+        [Required(ErrorMessage = "Informe o nome do produto")]
         [MaxLength(100, ErrorMessage = "O nome deve conter no máximo 100 caracteres")]
         public string nomeProd { get; set; }
+
+        [Display(Name = "Imagem do produto")]
         public string imgProd { get; set; }
 
         [Display(Name = "Descrição")]
-        [Required(ErrorMessage = "Informe a descrição")]
         [MaxLength(200, ErrorMessage = "A descrição deve conter no máximo 200 caracteres")]
         public string descrProd { get; set; }
 
@@ -30,6 +30,7 @@ namespace DragonSushi_ASP.NET.Models
 
         [Display(Name = "Ingrediente")]
         public bool ingrediente { get; set; }
+
         public int fkCategoria { get; set; }
 
         [Display(Name = "Quantidade")]

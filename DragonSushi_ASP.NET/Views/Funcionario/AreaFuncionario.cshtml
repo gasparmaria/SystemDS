@@ -7,6 +7,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    @Styles.Render("~/Content/style.css")
+    @Scripts.Render("~/bundles/modernizr")
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,20 +46,26 @@
     <title>Dragon Sushi - Restaurante Japonês</title>
 </head>
 <body>
-    <main class="employee_page">
-        <div class="employee_container">
-            <h1 class="employee_title">ÁREA DO FUNCIONÁRIO</h1>
+    <main class="employee__page">
+        <div class="employee__container">
+            <h1 class="employee__title">ÁREA DO FUNCIONÁRIO</h1>
 
-            <ul class="employee_page_ul_list">
-                <div class="employee_list">
-                <li class="employee_page_li_list">@Html.ActionLink("COMANDAS", "ExibirComanda", "Comanda")</li>
-                <li class="employee_page_li_list">@Html.ActionLink("RESERVAS", "ListarReserva", "Reserva")</li>
-                <li class="employee_page_li_list">@Html.ActionLink("CADASTRO DE CLIENTE", "CadastrarCliente", "Cliente")</li>
+            <ul class="employee__page__ul__list">
+                <div class="employee__list">
+                <li class="employee__page__li__list">@Html.ActionLink("COMANDAS", "ExibirComanda", "Comanda")</li>
+                <li class="employee__page__li__list">@Html.ActionLink("RESERVAS", "ListarReserva", "Reserva")</li>
+                <li class="employee__page__li__list">@Html.ActionLink("CADASTRO DE CLIENTE", "CadastrarCliente", "Cliente")</li>
+                <li class="employee__page__li__list">@Html.ActionLink("LANÇAR PEDIDO", "LançarPedido", "Pedido")</li>
         </div>
         </ul>
         </div>
 
-        <img class="img_employee_container" src="~/images/themes/employees-working.png">
+        <img class="img__employee__container" src="~/images/themes/employees-working.png">
     </main>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/script")
 </body>
 </html>

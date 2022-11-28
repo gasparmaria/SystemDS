@@ -1,56 +1,28 @@
-﻿@model IEnumerable<DragonSushi_ASP.NET.ViewModel.PedidoViewModel>
+﻿@model IEnumerable<DragonSushi_ASP.NET.ViewModel.DeliveryViewModel>
 
-@{ ViewBag.Title = "HistoricoPedido";
-                Layout = null; }
+@{ 
+    ViewBag.Title = "HistoricoPedido"; 
+}
 
-<h2>HistoricoPedido</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Pedido.idPedido)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pedido.qtdProd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pedido.descrPedido)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pedido.fkProd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pedido.fkComanda)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Pedido.idPedido)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Pedido.qtdProd)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Pedido.descrPedido)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Pedido.fkProd)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Pedido.fkComanda)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-    </td>
-</tr>}
-
-</table>
+<main class="order-history">
+    <div class="container">
+        <h1 class="order-history__title">HISTÓRICO DE PEDIDOS</h1>
+    </div>
+    <div class="container flex">
+        <table class="table">
+            <tr>
+                <th>DATA</th>
+                <th>PEDIDO</th>
+                <th>VALOR TOTAL</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Delivery.dataDelivery</td>
+                    <td>@item.Delivery.itens itens</td>
+                    <td>R$@item.Pagamento.total</td>
+                </tr>
+            }
+        </table>
+    </div>
+</main>

@@ -43,15 +43,15 @@ namespace DragonSushi_ASP.NET.Controllers
         {
             UsuarioDAO dao = new UsuarioDAO();
 
-            var login = dao.spSelectUsuario(vmusuario.Usuario.login);
+            var login = dao.ConsultarUsuario(vmusuario.Usuario.login);
 
             var options = new JsonSerializerOptions
             {
                 WriteIndented = true
             };
 
-            string fileName = "usuariologado.json";
-            string jsonString = JsonSerializer.Serialize(vmusuario, options);
+            string fileName = "C:/Users/Naja Informatica/Downloads/SystemDS/DragonSushi_ASP.NET/DataBase/usuariologado.json";
+            string jsonString = JsonSerializer.Serialize(login, options);
             System.IO.File.WriteAllText(fileName, jsonString);
 
             if (login == null)
@@ -82,15 +82,15 @@ namespace DragonSushi_ASP.NET.Controllers
         }
 
 
-        // ALTERAR LOGIN
+        // ALTERAR PERFIL
         public ActionResult EditarPerfil()
         {
-            string fileName = "usuariologado.json";
+            string fileName = "C:/Users/Naja Informatica/Downloads/SystemDS/DragonSushi_ASP.NET/DataBase/usuariologado.json";
             string jsonString = System.IO.File.ReadAllText(fileName);
             UsuarioViewModel vmusuario = JsonSerializer.Deserialize<UsuarioViewModel>(jsonString);
 
             UsuarioDAO dao = new UsuarioDAO();
-            var usuario = dao.spSelectUsuario(vmusuario.Usuario.login);
+            var usuario = dao.ConsultarUsuario(vmusuario.Usuario.login);
 
             return View(usuario);
         }
@@ -98,10 +98,21 @@ namespace DragonSushi_ASP.NET.Controllers
         [HttpPost]
         public ActionResult EditarPerfil(UsuarioViewModel vmusuario)
         {
-            UsuarioDAO dao = new UsuarioDAO();
-            dao.EditarPerfil(vmusuario);
+            string fileName = "C:/Users/Naja Informatica/Downloads/SystemDS/DragonSushi_ASP.NET/DataBase/usuariologado.json";
+            string jsonString = System.IO.File.ReadAllText(fileName);
+            UsuarioViewModel usuario = JsonSerializer.Deserialize<UsuarioViewModel>(jsonString);
+            string senha = usuario.Usuario.senha;
 
-            return RedirectToAction("ConsultarCategoria", "Produto");
+            if (vmusuario.Usuario.senha == senha)
+            {
+                UsuarioDAO dao = new UsuarioDAO();
+                dao.EditarPerfil(vmusuario);
+
+                return RedirectToAction("ConsultarCategoria", "Produto");
+            }else
+            {
+                return View();
+            }
         }
     }
 }

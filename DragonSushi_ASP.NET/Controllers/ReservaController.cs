@@ -56,8 +56,6 @@ namespace DragonSushi_ASP.NET.Controllers
 
         // ALTERAR RESERVA (ALTERAR RESERVA)
 
-
-
         public ActionResult EditarReserva(int id)
         {
             ReservaDAO dao = new ReservaDAO();

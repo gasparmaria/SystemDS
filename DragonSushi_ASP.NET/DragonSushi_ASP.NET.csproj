@@ -160,7 +160,6 @@
     <Compile Include="DAO\ClienteDAO.cs" />
     <Compile Include="DAO\ComandaDAO.cs" />
     <Compile Include="DAO\DeliveryDAO.cs" />
-    <Compile Include="DAO\EnderecoDAO.cs" />
     <Compile Include="DAO\FuncionarioDAO.cs" />
     <Compile Include="DAO\PedidoDAO.cs" />
     <Compile Include="DAO\ProdutoDAO.cs" />
@@ -184,14 +183,11 @@
     <Compile Include="Models\Pessoa.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Reserva.cs" />
-    <Compile Include="Models\Rua.cs" />
     <Compile Include="Models\UnMedida.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\ClienteViewModel.cs" />
     <Compile Include="ViewModel\ComandaViewModel.cs" />
     <Compile Include="ViewModel\DeliveryViewModel.cs" />
-    <Compile Include="ViewModel\EnderecoViewModel.cs" />
     <Compile Include="ViewModel\FuncionarioViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\PedidoViewModel.cs" />
@@ -246,6 +242,7 @@
     <Content Include="images\themes\manager-working.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="DataBase\usuariologado.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -279,13 +276,11 @@
     <Content Include="Views\Funcionario\AreaGerente.cshtml" />
     <Content Include="Views\Pedido\HistoricoPedido.cshtml" />
     <Content Include="Views\Pedido\PedidoFinalizado.cshtml" />
-    <Content Include="Views\Produto\MostrarCardapio.cshtml" />
     <Content Include="Views\Produto\MostrarEstoque.cshtml" />
     <Content Include="Views\Produto\ConsultarCategoria.cshtml" />
     <Content Include="Views\Comanda\DetalhesComanda.cshtml" />
     <Content Include="Views\Produto\CadastrarProduto.cshtml" />
     <Content Include="Views\Produto\EditarProduto.cshtml" />
-    <Content Include="Views\Produto\ConsultarCardapio.cshtml" />
     <Content Include="Views\Reserva\ListarReserva.cshtml" />
     <Content Include="Views\Reserva\CadastrarReserva.cshtml" />
     <Content Include="Views\Reserva\EditarReserva.cshtml" />
@@ -293,6 +288,9 @@
     <Content Include="Views\Usuario\Login.cshtml" />
     <Content Include="Views\Usuario\EditarPerfil.cshtml" />
     <Content Include="Views\Produto\spSelectProdutos.cshtml" />
+    <Content Include="Views\Pedido\Carrinho.cshtml" />
+    <Content Include="Views\Pedido\LançarPedido.cshtml" />
+    <Content Include="Views\Delivery\FinalizarPedido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

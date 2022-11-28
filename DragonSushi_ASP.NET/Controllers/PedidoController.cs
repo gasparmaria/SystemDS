@@ -37,16 +37,15 @@ namespace DragonSushi_ASP.NET.Controllers
         }
 
         // HISTORIOCO DE PEDIDOS
-
         [HttpGet]
         public ActionResult HistoricoPedido()
         {
-            string fileName = "usuariologado.json";
+            string fileName = "C:/Users/Naja Informatica/Downloads/SystemDS/DragonSushi_ASP.NET/DataBase/usuariologado.json";
             string jsonString = System.IO.File.ReadAllText(fileName);
             UsuarioViewModel vmusuario = JsonSerializer.Deserialize<UsuarioViewModel>(jsonString);
 
             DeliveryDAO dao = new DeliveryDAO();
-            var estoque = dao.spHistoricoPedido(vmusuario.Usuario.idUsuario);
+            var estoque = dao.HistoricoPedido(vmusuario.Usuario.idUsuario);
 
             return View(estoque);
         }
@@ -56,5 +55,30 @@ namespace DragonSushi_ASP.NET.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Carrinho()
+        {
+            PedidoDAO dao = new PedidoDAO();
+            var PedidoViewModel = dao.Carrinho();
+            return View(PedidoViewModel);
+        }
+
+        // LANÇAR PEDIDO
+        public ActionResult LançarPedido()
+        {
+            ProdutoDAO dao = new ProdutoDAO();
+            var lista = dao.ExibirCombo();
+            return View(lista);
+        }
+
+        [HttpPost]
+        public ActionResult LançarPedido(PedidoViewModel vmPedido)
+        {
+            PedidoDAO dao = new PedidoDAO();
+            dao.LançarPedido(vmPedido);           
+            return RedirectToAction("ExibirComanda", "Comanda", new { area = "" });
+        }
+
     }
 }

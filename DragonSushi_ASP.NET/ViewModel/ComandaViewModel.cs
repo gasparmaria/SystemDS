@@ -9,6 +9,7 @@ namespace DragonSushi_ASP.NET.ViewModel
     public class ComandaViewModel
     {
         public Comanda Comanda;
+        public Produto Produto;
         public Pedido Pedido;
         public double subtotal;
         public double total;

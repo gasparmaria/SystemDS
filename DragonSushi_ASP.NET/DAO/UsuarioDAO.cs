@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace DragonSushi_ASP.NET.DAO
 {
@@ -78,26 +79,17 @@ namespace DragonSushi_ASP.NET.DAO
         {
             Database db = new Database();
 
-            string insertQuery = String.Format("CALL spEditarCliente(@idUsuario,@nomePessoa,@telefone,@cpf)");
+            string insertQuery = String.Format("CALL spEditarUsuario(@idUsuario,@idPessoa,@nomePessoa,@telefone,@login,@senha)");
             MySqlCommand command = new MySqlCommand(insertQuery, db.conectarDb());
             command.Parameters.Add("@idUsuario", MySqlDbType.Int32).Value = vmUsuario.Usuario.idUsuario;
+            command.Parameters.Add("@idPessoa", MySqlDbType.Int32).Value = vmUsuario.Pessoa.idPessoa;
             command.Parameters.Add("@nomePessoa", MySqlDbType.String).Value = vmUsuario.Pessoa.nomePessoa;
             command.Parameters.Add("@telefone", MySqlDbType.String).Value = vmUsuario.Pessoa.telefone;
-            command.Parameters.Add("@cpf", MySqlDbType.String).Value = vmUsuario.Pessoa.cpf;
+            command.Parameters.Add("@login", MySqlDbType.String).Value = vmUsuario.Usuario.login;
+            command.Parameters.Add("@senha", MySqlDbType.String).Value = vmUsuario.Usuario.novaSenha;
 
             command.ExecuteNonQuery();
             db.desconectarDb();
-        }
-
-        // LOGIN
-        public UsuarioViewModel spSelectUsuario(string login)
-        {
-            Database db = new Database();
-            string selectQuery = String.Format("CALL spSelectUsuario('{0}')", login);
-            MySqlCommand command = new MySqlCommand(selectQuery, db.conectarDb());
-            var dados = command.ExecuteReader();
-
-            return listaUsuario(dados).FirstOrDefault();
         }
     }
 }

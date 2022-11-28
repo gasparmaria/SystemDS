@@ -188,6 +188,21 @@ body {
     color: #ED2736
 }
 
+/* Alteração formulário */
+
+.form__box {
+    margin: 20px 0;
+}
+
+.form__title.align-center {
+    text-align: center;
+}
+
+.form__button.align-center {
+    display: block;
+    margin: 0 auto;
+}
+
 .form__paragraph__accent-text a {
     text-decoration: none;
     color: #ED2736
@@ -339,7 +354,8 @@ body {
 .footer {
     color: #fff;
     background-color: #272525;
-    padding: 0 0 60px 0
+    padding: 0 0 60px 0;
+    margin-top: 50px;
 }
 
 .footer__container-img {
@@ -1397,6 +1413,14 @@ body {
     width: 250px
 }
 
+.shopping-cart__delivery__form-payment-address__title {
+    margin: 20px 0;
+}
+
+.form__button.form__button-edding-delivery {
+    margin: 20px 0 !important;
+}
+
 .shopping-cart__title {
     font-size: 32px;
     color: #ED2736;
@@ -1529,9 +1553,6 @@ body {
     background: none
 }
 
-    .shopping-cart__delivery__form-payment-address .form input {
-        height: 25px
-    }
 
 .shopping-cart__delivery__form-payment-address__payment-options {
     display: flex;
@@ -3309,7 +3330,8 @@ a {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #F4F4F4
+    background-color: #F4F4F4;
+    min-height: 100vh
 }
 
 .book__page__search {
@@ -3440,7 +3462,10 @@ a {
 .content__header {
     display: flex;
     justify-content: space-between;
-    padding: 0 253px
+    align-items: center;
+    margin: 0 auto;
+    max-width: 800px;
+    gap: 20px;
 }
 
     .content__header .employee__inventory__search {

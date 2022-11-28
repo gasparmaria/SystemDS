@@ -14,6 +14,13 @@ namespace DragonSushi_ASP.NET.ViewModel
 
         public Endereco Endereco { get; set; }
 
+
+        public Bairro Bairro { get; set; }
+
+        public Cidade Cidade { get; set; }
+
+        public Estado Estado { get; set; }
+
         public Comanda Comanda { get; set; }
 
         public Pagamento Pagamento { get; set; }
