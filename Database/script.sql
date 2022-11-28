@@ -1,4 +1,5 @@
 /* CRIAÇÃO DO BANCO */
+
 CREATE DATABASE IF NOT EXISTS dbDragonSushi;
 USE dbDragonSushi;
 
@@ -10,15 +11,14 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE tbPessoa (
 	idPessoa INT AUTO_INCREMENT PRIMARY KEY,
 	nomePessoa VARCHAR(150) NOT NULL,
-	telefone VARCHAR(15) NOT NULL,
-    cpf VARCHAR(14) NOT NULL UNIQUE,
+	telefone VARCHAR(15) NOT NULL UNIQUE,
+      cpf VARCHAR(14) NOT NULL UNIQUE,
 	ocupacao INT NOT NULL
 );
 
-
 CREATE TABLE tbUsuario (
 	idUsuario INT AUTO_INCREMENT PRIMARY KEY,
-	login VARCHAR(50) NOT NULL,
+	login VARCHAR(50) NOT NULL UNIQUE,
 	senha VARCHAR(20) NOT NULL,
 	fkPessoa INT NOT NULL,
 	FOREIGN KEY(fkPessoa) REFERENCES tbPessoa (idPessoa)
@@ -61,7 +61,6 @@ CREATE TABLE tbEndereco (
 	FOREIGN KEY(fkEstado) REFERENCES tbEstado (idEstado)
 );
 
-
 CREATE TABLE tbUnMedida (
 	idUnMedida INT AUTO_INCREMENT PRIMARY KEY,
 	unMedida VARCHAR(50) NOT NULL UNIQUE
@@ -75,7 +74,7 @@ CREATE TABLE tbCategoria (
 CREATE TABLE tbProduto (
 	idProd INT AUTO_INCREMENT PRIMARY KEY,
 	nomeProd VARCHAR(100) NOT NULL,
-    imgProd VARCHAR(1000),
+    imgProd VARCHAR(400),
 	descrProd VARCHAR(200),
 	preco DECIMAL(6,2),
 	estoque BOOLEAN NOT NULL,
@@ -118,8 +117,6 @@ CREATE TABLE tbDelivery (
     FOREIGN KEY (fkPag) REFERENCES tbPagamento (idPag)
 );
 
-
-
 CREATE TABLE tbPagamentoConta (
 	fkPag INT NOT NULL,
     fkComanda INT NOT NULL,
@@ -136,18 +133,16 @@ CREATE TABLE tbReserva (
 	FOREIGN KEY(fkPessoa) REFERENCES tbPessoa (idPessoa)
 );
 
-
-
 /* CRIAÇÃO DAS PROCEDURES */
 
-delimiter $$
-create procedure spSelectUsuario(vLogin varchar(50))
-begin
-    select u.*,p.* from tbUsuario as u inner join tbPessoa as p on u.fkPessoa = p.idPessoa where Login = vLogin;
-End $$
-select * from tbdelivery;
-select * from tbcomanda;
-delimiter $$
+DELIMITER $$
+CREATE POCEDURE spSelectUsuario(vLogin VARCHAR(50))
+BEGIN
+    SELECT u.*,p.* FROM tbUsuario AS u INNER JOIN tbPessoa AS p ON u.fkPessoa = p.idPessoa WHERE Login = vLogin;
+END 
+$$
+
+DELIMITER $$
 CREATE PROCEDURE spComandaDeliveryS()
 BEGIN
 	IF NOT EXISTS (SELECT * FROM tbComanda WHERE numMesa = 0 AND statusComanda = 1) THEN
@@ -157,18 +152,23 @@ BEGIN
 END
 $$
 
-delimiter $$
+DELIMITER $$
+CREATE PROCEDURE spComandaPresencial()
+BEGIN
+	IF NOT EXISTS (SELECT * FROM tbComanda WHERE numMesa = 1 AND statusComanda = 1) THEN
+		INSERT INTO tbComanda VALUES (DEFAULT,0,1);
+	END IF;
+    SELECT idComanda FROM tbComanda WHERE numMesa = 1 AND statusComanda = 1;
+END
+$$
+
+DELIMITER $$
 CREATE PROCEDURE spComandaDeliverySS()
 BEGIN
     SELECT MAX(idComanda) FROM tbComanda WHERE numMesa = 0 AND statusComanda = 0;
 END
 $$
 
-select *from tbpagamento
-
-CALL spComandaDeliverySS();
-drop procedure spComandaDeliverySS;
-update tbComanda set statusComanda = 0 where idComanda = 39;
 DELIMITER $$
 CREATE PROCEDURE spCadastrarUsuario (vnome VARCHAR(150), vtelefone VARCHAR(15), vcpf VARCHAR(14), vlogin VARCHAR(50), vsenha VARCHAR(20))
 BEGIN
@@ -179,8 +179,6 @@ BEGIN
 END
 $$
 
-call spCadastrarUsuario('Guilherme','(11) 93025-2264', '239.383.968-22','guizinho','123456');
-
 DELIMITER $$
 CREATE PROCEDURE spCadastrarFuncionario (vnome VARCHAR(150), vtelefone VARCHAR(15), vcpf VARCHAR(14), vlogin VARCHAR(50), vsenha VARCHAR(20))
 BEGIN
@@ -190,8 +188,6 @@ BEGIN
 		VALUES (DEFAULT, vlogin, vsenha, (SELECT idPessoa FROM tbPessoa WHERE nomePessoa = vnome AND telefone = vtelefone));
 END
 $$
-
-call spCadastrarFuncionario('Maria Eduarda Gaspar','(11) 22222-2222', '222.222.222-22','madu','123456');
 
 DELIMITER $$
 CREATE PROCEDURE spCadastrarCliente (vnome VARCHAR(150), vtelefone VARCHAR(15), vcpf VARCHAR(14))
@@ -220,15 +216,15 @@ BEGIN
 		INSERT INTO tbCidade 
 			VALUES (DEFAULT, vcidade);
 	END IF;
-	INSERT INTO tbEndereco 
+	IF NOT EXISTS(SELECT * FROM tbEndereco WHERE rua = vrua) THEN
+    INSERT INTO tbEndereco 
 		VALUES (DEFAULT, vrua,
 			(SELECT idBairro FROM tbBairro WHERE bairro = vbairro),
 			(SELECT idCidade FROM tbCidade WHERE cidade = vcidade),
 			(SELECT idEstado FROM tbEstado WHERE idEstado = vestado));
-END
+END IF;
+	END
 $$
-
-call spCadastrarEndereco("Francisco Grilo","jardim Santa Monica","São Paulo", "SP");
 
 DELIMITER $$
 CREATE PROCEDURE spPagamentoComanda (vtotal DECIMAL(6,2), vformaPag VARCHAR(50), vidComanda INT)
@@ -261,10 +257,40 @@ BEGIN
 END
 $$
 
-call spCadastrarDelivery(3, 1, 2, 190.80,'Pix','21','casa')
-select * from tbFormaPag
-insert into tbPagamento values (default, 50.00, 1)
-update tbcomanda set statusComanda = 0 where idComanda = 1
+DELIMITER $$
+CREATE PROCEDURE spCadastrarDeliverySistema (vidPessoa INT, vrua VARCHAR(200), vbairro VARCHAR(150), vcidade VARCHAR(100), vestado CHAR(2), vidComanda INT, vtotal DECIMAL(6,2), vformaPag VARCHAR(50), vnumEndereco VARCHAR(10), vdescrEndereco VARCHAR(100))
+BEGIN
+	INSERT INTO tbPagamento 
+		VALUES (DEFAULT, vtotal, 
+			(SELECT idFormaPag FROM tbFormaPag WHERE formaPag = vformaPag)); 
+	 IF NOT EXISTS (SELECT bairro FROM tbBairro WHERE bairro = vbairro) THEN 
+		INSERT INTO tbBairro
+			VALUES (DEFAULT, vbairro);
+	END IF;
+    IF NOT EXISTS (SELECT cidade FROM tbCidade WHERE cidade = vcidade) THEN 
+		INSERT INTO tbCidade 
+			VALUES (DEFAULT, vcidade);
+	END IF;
+	IF NOT EXISTS (SELECT idEndereco FROM tbEndereco where rua = vrua AND fkbairro = (SELECT idBairro FROM tbBairro WHERE bairro = vbairro) AND fkcidade = (SELECT idCidade FROM tbCidade WHERE cidade = vcidade) AND fkestado = vestado) THEN 
+		INSERT INTO tbEndereco 
+			VALUES (DEFAULT, vrua,
+				(SELECT idBairro FROM tbBairro WHERE bairro = vbairro),
+				(SELECT idCidade FROM tbCidade WHERE cidade = vcidade),
+				(SELECT idEstado FROM tbEstado WHERE idEstado = vestado));
+	END IF;
+	INSERT INTO tbDelivery 
+		VALUES (DEFAULT, 
+			CURDATE(),
+            vnumEndereco,
+            vdescrEndereco,
+			vidPessoa,
+			(SELECT idEndereco FROM tbEndereco where rua = vrua AND fkbairro = (SELECT idBairro FROM tbBairro WHERE bairro = vbairro) AND fkcidade = (SELECT idCidade FROM tbCidade WHERE cidade = vcidade) AND fkestado = vestado),
+			vidComanda, 
+			(SELECT MAX(idPag) FROM tbPagamento));
+	UPDATE tbComanda SET statusComanda = 0 WHERE idComanda = vidComanda;
+END
+$$
+
 DELIMITER $$
 CREATE PROCEDURE spCadastrarReserva (vdata DATE, vhora TIME, vnumPessoas INT, vcpf VARCHAR(14))
 BEGIN
@@ -294,8 +320,6 @@ BEGIN
 END
 $$
 
-call spCadastrarPedido(2,'',10,3);
-
 DELIMITER $$
 CREATE PROCEDURE spConsultarFuncionario (vnome VARCHAR(150))
 BEGIN
@@ -303,7 +327,6 @@ BEGIN
 		WHERE nomePessoa = vnome AND ocupacao = 2;
 END
 $$
-
 
 DELIMITER $$
 CREATE PROCEDURE spConsultarCliente (vcpf VARCHAR(14))
@@ -322,13 +345,12 @@ END
 $$
 
 DELIMITER $$
-CREATE PROCEDURE spConsultarCardapio  (vnome VARCHAR(100))
+CREATE PROCEDURE spConsultarCardapio (vnome VARCHAR(100))
 BEGIN
 	SELECT * FROM tbProduto 
 		WHERE nomeProd LIKE concat('%',vnome,'%');
 END
 $$
-
 
 DELIMITER $$
 CREATE PROCEDURE spPratoEspecifico  (vid int)
@@ -338,8 +360,6 @@ BEGIN
 END
 $$
 
-
-
 DELIMITER $$
 CREATE PROCEDURE spExibirEstoque ()
 BEGIN
@@ -348,7 +368,6 @@ BEGIN
 		WHERE estoque = 1;
 END
 $$
-
 
 DELIMITER $$
 CREATE PROCEDURE spExibirCardapio ()
@@ -365,8 +384,6 @@ BEGIN
 		WHERE fkCategoria = vcategoria;
 END
 $$
-
-
 
 DELIMITER $$
 CREATE PROCEDURE spConsultarReserva(vcpf VARCHAR(14))
@@ -389,6 +406,13 @@ CREATE PROCEDURE spConsultarComanda(vnum INT)
 BEGIN
 	SELECT * FROM tbComanda 
 		WHERE idComanda = vnum;
+END
+$$
+
+DELIMITER $$
+CREATE PROCEDURE spComandaDelivery(vmesa INT)
+BEGIN
+	SELECT * FROM tbComanda WHERE numMesa = vmesa AND statusComanda = 1;
 END
 $$
 
@@ -420,6 +444,19 @@ BEGIN
 END
 $$
 
+DELIMITER $$
+CREATE PROCEDURE spEditarUsuario (vidUsuario INT, vidPessoa INT, vnome VARCHAR(150), vtelefone VARCHAR(15),  vlogin VARCHAR(50), vsenha VARCHAR(20))
+BEGIN
+    UPDATE tbPessoa 
+        SET nomePessoa = vnome, 
+            telefone = vtelefone
+        WHERE idPessoa = vidPessoa;
+    UPDATE tbUsuario
+        SET login = vlogin,
+            senha = vsenha
+        WHERE idUsuario = vidUsuario;
+END
+$$
 
 DELIMITER $$
 CREATE PROCEDURE spExibirReservas (vdata DATE)
@@ -428,7 +465,6 @@ BEGIN
 		WHERE dataReserva >= vdata;
 END
 $$
-
 
 DELIMITER $$
 CREATE PROCEDURE spSelectReservas (vid INT)
@@ -440,7 +476,6 @@ BEGIN
 END
 $$
 
-
 DELIMITER $$
 CREATE PROCEDURE spSelectProdutos (vid INT)
 BEGIN
@@ -449,8 +484,6 @@ BEGIN
         
 END
 $$
-
-
 
 DELIMITER $$
 CREATE PROCEDURE spEditarReserva (vid INT, vdata DATE, vhora TIME, vnumPessoas INT)
@@ -468,6 +501,20 @@ CREATE PROCEDURE spExibirComandas ()
 BEGIN
 	SELECT * FROM tbComanda
 		WHERE statusComanda = 1;
+END
+$$
+
+DELIMITER $$
+CREATE PROCEDURE spEditarUsuario (vidUsuario INT, vidPessoa INT, vnome VARCHAR(150), vtelefone VARCHAR(15),  vlogin VARCHAR(50), vsenha VARCHAR(20))
+BEGIN
+	UPDATE tbPessoa 
+		SET nomePessoa = vnome, 
+            telefone = vtelefone
+		WHERE idPessoa = vidPessoa;
+	UPDATE tbUsuario
+		SET login = vlogin,
+			senha = vsenha
+		WHERE idUsuario = vidUsuario;
 END
 $$
 
@@ -501,20 +548,27 @@ BEGIN
 END
 $$
 
-
 DELIMITER $$
 CREATE PROCEDURE spHistoricoPedido (vFkPessoa INT)
 BEGIN
+	
 	SELECT d.dataDelivery, pag.total, f.formaPag,COUNT(p.idPedido), d.idDelivery FROM tbcomanda as c
-	inner join tbdelivery as d on c.idComanda = d.fkComanda
+    inner join tbdelivery as d on c.idComanda = d.fkComanda
     inner join tbpedido as p on d.fkComanda = p.fkComanda
     inner join tbpagamento as pag on d.fkPag = pag.idPag
     inner join tbformapag as f on pag.fkFormaPag = f.idFormaPag
     inner join tbproduto as prod on p.fkProd = prod.idProd
-    where d.fkPessoa = vFkPessoa GROUP BY d.idDelivery;
+    where d.fkPessoa = vFkpessoa GROUP BY d.idDelivery;
 END
 $$
-call spHistoricoPedido(2)
+
+DELIMITER $$
+CREATE PROCEDURE spLimpaComanda(vcomanda INT)
+BEGIN
+    DELETE FROM tbPedido WHERE fkComanda = vcomanda;
+END
+$$
+
 DELIMITER $$
 CREATE PROCEDURE spSelectLogin (vLogin varchar(50))
 BEGIN
@@ -533,17 +587,29 @@ $$
 DELIMITER $$
 CREATE PROCEDURE spPedidosComanda(vcomanda INT)
 BEGIN
-    SELECT p.*,prod.nomeProd, p.qtdProd, prod.imgProd, prod.preco, c.numMesa FROM tbPedido as p
+	SELECT p.*,prod.nomeProd, p.qtdProd, prod.imgProd, prod.preco FROM tbPedido as p
     join tbproduto as prod on p.fkProd = prod.idProd
     join tbcomanda as c on p.fkComanda = c.idComanda
     where p.fkComanda = vcomanda and c.statusComanda = 1;
 END
 $$
-drop procedure spPedidosComanda;
-select * from tbpedido;
-call spPedidosComanda(37);
-call spComandaDeliveryS();
-select * from tbCOmanda;
+
+DELIMITER $$
+CREATE PROCEDURE spSelectEndereco(vrua VARCHAR(200), vbairro VARCHAR(150), vcidade VARCHAR(100), vestado CHAR(2))
+BEGIN
+    SELECT en.idEndereco, en.rua, b.bairro, c.cidade, e.idEstado FROM tbEndereco AS en
+    INNER JOIN tbBairro AS b ON en.fkBairro = b.idBairro
+    INNER JOIN tbCidade AS c ON en.fkCidade = c.idCidade
+    INNER JOIN tbEstado AS e ON en.fkEstado = e.idEstado
+    WHERE 
+        en.rua = vrua AND
+        b.bairro = vbairro AND
+        c.cidade = vcidade AND
+        e.idEstado = vestado;
+END
+$$
+
+/* POPULAÇÃO DO BANCO */
 
 INSERT INTO tbEstado
 	VALUES 
@@ -558,8 +624,6 @@ INSERT INTO tbFormaPag
 		(DEFAULT, 'Vale refeição'),
 		(DEFAULT, 'Dinheiro'),
 		(DEFAULT, 'Pix');
-        
-
      
 INSERT INTO tbPessoa
 	VALUES (DEFAULT, 'Gerente', '(11) 11111-1111', '111.111.111-11', 1);
@@ -575,8 +639,11 @@ INSERT INTO tbCategoria
 		(DEFAULT, 'Peça'),
         (DEFAULT, 'Combo'),
         (DEFAULT, 'Bebida');
-        
-CALL spCadastrarProduto ('Shimeji', 'https://sushiboulevard.com.br/wp-content/uploads/2021/11/Shimeji.jpg', 'Porção de 300g de shimeji na manteiga', 27.90, 0, 0, 'Prato quente', NULL, NULL);
+
+CALL spCadastrarUsuario('Guilherme','(11) 93025-2264', '239.383.968-22','gui','123');
+CALL spCadastrarFuncionario('Maria Eduarda Gaspar','(11) 22222-2222', '222.222.222-22','madu','123456');
+ 
+CALL spCadastrarProduto ('Shimeji', 'http://sushiboulevard.com.br/wp-content/uploads/2021/11/Shimeji.jpg', 'Porção de 300g de shimeji na manteiga', 27.90, 0, 0, 'Prato quente', NULL, NULL);
 CALL spCadastrarProduto ('Guioza', 'https://koibc.com.br/cardapios/storage/images/2021/09/gyoza.jpg', 'Porção de 6 guiozas de carne bovina', 21.90, 1, 0, 'Prato quente', 30, 'unidades');
 CALL spCadastrarProduto ('Salmão grelhado', 'https://www.dicasdemulher.com.br/wp-content/uploads/2020/01/salmao-grelhado-0.png', 'Porção de 200g de fatias de salmão grelhado', 54.90, 0, 0, 'Prato quente', NULL, NULL);
 CALL spCadastrarProduto ('Ceviche', 'https://koibc.com.br/cardapios/storage/images/2021/09/ceviche-peixe-branco.jpg', 'Porção de 180g de pedaços de salmão e tilápia temperados com limão, azeite, cebola roxa e pimenta', 39.90, 0, 0, 'Entrada', NULL, NULL);
@@ -588,13 +655,13 @@ CALL spCadastrarProduto ('Sashimi salmão', 'https://koibc.com.br/cardapios/stor
 CALL spCadastrarProduto ('Sashimi atum', 'https://koibc.com.br/cardapios/storage/images/2021/09/c57f5a27a6de8b1eb039f03806efbf46.jpg', '8 fatias de atum', 18.00, 0, 0, 'Peça', NULL, NULL);
 CALL spCadastrarProduto ('Sashimi peixe branco', 'https://koibc.com.br/cardapios/storage/images/2021/09/5f5e8c88f6e7601773f73ebfe926382c.jpg', '8 fatias de peixe branco', 16.00, 0, 0, 'Peça', NULL, NULL);
 CALL spCadastrarProduto ('Sashimi variado', 'https://koibc.com.br/cardapios/storage/images/2021/09/3b617dfa8b7456fda810b6be4dce31ac.jpg', '12 fatias variadas entre salmão, atum e peixe branco', 27.90, 0, 0, 'Peça', NULL, NULL);
-CALL spCadastrarProduto ('Joe', 'https://sushiboulevard.com.br/wp-content/uploads/2021/11/Joy-Salmao.jpg', '8 unidades de enrolado de salmão com arroz e recheio de salmão batido com cream cheese e cebolinha', 18.00, 0, 0, 'Peça', NULL, NULL);
+CALL spCadastrarProduto ('Joe', 'http://sushiboulevard.com.br/wp-content/uploads/2021/11/Joy-Salmao.jpg', '8 unidades de enrolado de salmão com arroz e recheio de salmão batido com cream cheese e cebolinha', 18.00, 0, 0, 'Peça', NULL, NULL);
 CALL spCadastrarProduto ('Hot roll', 'https://koibc.com.br/cardapios/storage/images/2021/09/hot-filadelfia.jpg', '8 unidades de sushi de salmão empanado com cream cheese e molho tarê', 12.90, 0, 0, 'Peça', NULL, NULL);
 CALL spCadastrarProduto ('Temaki de salmão', 'https://koibc.com.br/cardapios/storage/images/2021/09/temaki-salmao.jpg', 'Salmão em cubos, cream cheese, cebolinha, arroz e nori', 18.99, 0, 0, 'Temaki', NULL, NULL);
 CALL spCadastrarProduto ('Temaki de salmão grelhado', 'https://koibc.com.br/cardapios/storage/images/2021/09/temaki-filadelfia.jpg', 'Salmão grelhado, cream cheese, cebolinha, arroz e nori', 18.99, 0, 0, 'Temaki', NULL, NULL);
 CALL spCadastrarProduto ('Temaki de atum', 'https://koibc.com.br/cardapios/storage/images/2021/09/temaki-atum.jpg', 'Atum em cubos, arroz e nori', 18.99, 0, 0, 'Temaki', NULL, NULL);
-CALL spCadastrarProduto ('Temaki de peixe branco', 'https://sushiboulevard.com.br/wp-content/uploads/2021/11/Temaki-Peixe-Branco.jpg', 'Peixe branco em cubos, cream cheese, cebolinha, arroz e nori', 18.99, 0, 0, 'Temaki', NULL, NULL);
-CALL spCadastrarProduto ('Temaki califórnia', 'https://sushiboulevard.com.br/wp-content/uploads/2021/11/Temaki-California.jpg', 'Pepino, manga, kani, arroz e nori', 11.99, 0, 0, 'Temaki', NULL, NULL);
+CALL spCadastrarProduto ('Temaki de peixe branco', 'http://sushiboulevard.com.br/wp-content/uploads/2021/11/Temaki-Peixe-Branco.jpg', 'Peixe branco em cubos, cream cheese, cebolinha, arroz e nori', 18.99, 0, 0, 'Temaki', NULL, NULL);
+CALL spCadastrarProduto ('Temaki califórnia', 'http://sushiboulevard.com.br/wp-content/uploads/2021/11/Temaki-California.jpg', 'Pepino, manga, kani, arroz e nori', 11.99, 0, 0, 'Temaki', NULL, NULL);
 CALL spCadastrarProduto ('Temaki de shimeji', 'https://www.djapa.com.br/wp-content/uploads/2022/01/temaki-shimeji-1.jpg', 'Shimeji, arroz e nori', 14.99, 0, 0, 'Temaki', NULL, NULL);
 CALL spCadastrarProduto ('Combo 1 ', 'https://koibc.com.br/cardapios/storage/images/2021/09/combinado-fuji.jpg', '6 sashimi variados, 6 niguiri variados, 4 uramaki salmão. Serve 1 pessoa.', 51.99, 0, 0, 'Combo', NULL, NULL);
 CALL spCadastrarProduto ('Combo 2', 'https://koibc.com.br/cardapios/storage/images/2021/09/combinado-do-chefe.jpg', '15 sashimi variados, 8 niguiri variados, 8 hossomaki salmão, 4 uramaki salmão. Serve 2 pessoas.', 97.99, 0, 0, 'Combo', NULL, NULL);
@@ -616,63 +683,25 @@ CALL spCadastrarProduto ('Atum', NULL, NULL, NULL, 1, 1, NULL, 4, 'kg');
 CALL spCadastrarProduto ('Peixe branco', NULL, NULL, NULL, 1, 1, NULL, 3, 'kg');
 CALL spCadastrarProduto ('Cream cheese', NULL, NULL, NULL, 1, 1, NULL, 6, 'kg');
 
-
-
-
 INSERT INTO tbComanda
 	VALUES
-			(DEFAULT, 001, 1),
-    		(DEFAULT, 002, 1),
-			(DEFAULT, 003, 1),
-			(DEFAULT, 004, 1),     
-			(DEFAULT, 005, 1),
-			(DEFAULT, 006, 1),
-			(DEFAULT, 007, 1),
-            (DEFAULT, 008, 1),
-    		(DEFAULT, 009, 1),
-			(DEFAULT, 010, 1),
-			(DEFAULT, 011, 1),     
-			(DEFAULT, 012, 1),
-			(DEFAULT, 013, 1),
-			(DEFAULT, 014, 1),
-            (DEFAULT, 015, 1),
-    		(DEFAULT, 016, 1),
-			(DEFAULT, 017, 1),
-			(DEFAULT, 018, 1),     
-			(DEFAULT, 019, 1),
-			(DEFAULT, 020, 1),
-			(DEFAULT, 021, 1),
-			(DEFAULT, 022, 1),
-			(DEFAULT, 023, 1),     
-			(DEFAULT, 024, 1),
-			(DEFAULT, 025, 1),
-			(DEFAULT, 026, 1),
-            (DEFAULT, 027, 1),
-    		(DEFAULT, 028, 1),
-			(DEFAULT, 029, 1),
-			(DEFAULT, 030, 1),     
-			(DEFAULT, 031, 1);
+			(DEFAULT, 001, DEFAULT),
+    		(DEFAULT, 002, DEFAULT),
+			(DEFAULT, 003, DEFAULT),
+			(DEFAULT, 004, DEFAULT),     
+			(DEFAULT, 005, DEFAULT),
+			(DEFAULT, 006, DEFAULT),
+			(DEFAULT, 007, DEFAULT),
+            (DEFAULT, 008, DEFAULT),
+    		(DEFAULT, 009, DEFAULT),
+			(DEFAULT, 010, DEFAULT),
+			(DEFAULT, 011, DEFAULT),     
+			(DEFAULT, 012, DEFAULT),
+			(DEFAULT, 013, DEFAULT),
+			(DEFAULT, 014, DEFAULT),
+            (DEFAULT, 015, DEFAULT),
+    		(DEFAULT, 016, DEFAULT);
 
 INSERT INTO tbReserva
 	VALUES
 			(DEFAULT, '2001-12-04', '12:20', 2, 1);
-
-
-/* SELECTS */
-
-select * from tbPessoa;
-select * from tbpedido;
-select * from tbUsuario;
-select * from tbProduto;
-select * from tbComanda;
-select * from tbCategoria;
-select * from tbUnMedida;
-select * from tbReserva;
-select * from tbDelivery;
-
-
-CALL spCadastrarPedido(3, "descricao", 3, 5);
-CALL spCadastrarPedido(1, "descricao", 1, 5);
-CALL spCadastrarPedido(2, "descricao", 2, 5);
-CALL spCadastrarPedido(4, "descricao", 4, 5);
-
