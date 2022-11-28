@@ -29,6 +29,8 @@ namespace DragonSushi_ASP.NET.DAO
 
             command.ExecuteNonQuery();
             db.desconectarDb();
+
+            string amsdkasd = "jsdsjdksd";
         }
 
         public int ConsultarComanda()

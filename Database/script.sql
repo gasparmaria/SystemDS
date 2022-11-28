@@ -1,7 +1,4 @@
 /* CRIAÇÃO DO BANCO */
-
-DROP DATABASE dbDragonSushi;
-
 CREATE DATABASE IF NOT EXISTS dbDragonSushi;
 USE dbDragonSushi;
 
@@ -146,9 +143,32 @@ CREATE TABLE tbReserva (
 delimiter $$
 create procedure spSelectUsuario(vLogin varchar(50))
 begin
-    select * from tbUsuario where Login = vLogin;
+    select u.*,p.* from tbUsuario as u inner join tbPessoa as p on u.fkPessoa = p.idPessoa where Login = vLogin;
 End $$
+select * from tbdelivery;
+select * from tbcomanda;
+delimiter $$
+CREATE PROCEDURE spComandaDeliveryS()
+BEGIN
+	IF NOT EXISTS (SELECT * FROM tbComanda WHERE numMesa = 0 AND statusComanda = 1) THEN
+		INSERT INTO tbComanda VALUES (DEFAULT,0,1);
+	END IF;
+    SELECT idComanda FROM tbComanda WHERE numMesa = 0 AND statusComanda = 1;
+END
+$$
 
+delimiter $$
+CREATE PROCEDURE spComandaDeliverySS()
+BEGIN
+    SELECT MAX(idComanda) FROM tbComanda WHERE numMesa = 0 AND statusComanda = 0;
+END
+$$
+
+select *from tbpagamento
+
+CALL spComandaDeliverySS();
+drop procedure spComandaDeliverySS;
+update tbComanda set statusComanda = 0 where idComanda = 39;
 DELIMITER $$
 CREATE PROCEDURE spCadastrarUsuario (vnome VARCHAR(150), vtelefone VARCHAR(15), vcpf VARCHAR(14), vlogin VARCHAR(50), vsenha VARCHAR(20))
 BEGIN
@@ -241,8 +261,10 @@ BEGIN
 END
 $$
 
-call spCadastrarDelivery(1, 1, 3, '190.80','Pix',21,'casa')
-
+call spCadastrarDelivery(3, 1, 2, 190.80,'Pix','21','casa')
+select * from tbFormaPag
+insert into tbPagamento values (default, 50.00, 1)
+update tbcomanda set statusComanda = 0 where idComanda = 1
 DELIMITER $$
 CREATE PROCEDURE spCadastrarReserva (vdata DATE, vhora TIME, vnumPessoas INT, vcpf VARCHAR(14))
 BEGIN
@@ -483,19 +505,16 @@ $$
 DELIMITER $$
 CREATE PROCEDURE spHistoricoPedido (vFkPessoa INT)
 BEGIN
-
-    SELECT d.dataDelivery, pag.total, f.formaPag,COUNT(p.idPedido), d.idDelivery FROM tbcomanda as c
-    inner join tbdelivery as d on c.idComanda = d.fkComanda
+	SELECT d.dataDelivery, pag.total, f.formaPag,COUNT(p.idPedido), d.idDelivery FROM tbcomanda as c
+	inner join tbdelivery as d on c.idComanda = d.fkComanda
     inner join tbpedido as p on d.fkComanda = p.fkComanda
     inner join tbpagamento as pag on d.fkPag = pag.idPag
     inner join tbformapag as f on pag.fkFormaPag = f.idFormaPag
     inner join tbproduto as prod on p.fkProd = prod.idProd
-    where d.fkPessoa = vFkpessoa GROUP BY d.idDelivery;
+    where d.fkPessoa = vFkPessoa GROUP BY d.idDelivery;
 END
 $$
-
-
-
+call spHistoricoPedido(2)
 DELIMITER $$
 CREATE PROCEDURE spSelectLogin (vLogin varchar(50))
 BEGIN
@@ -511,21 +530,20 @@ BEGIN
 END
 $$
 
-
-
 DELIMITER $$
 CREATE PROCEDURE spPedidosComanda(vcomanda INT)
 BEGIN
-    SELECT p.*,prod.nomeProd, p.qtdProd, prod.imgProd, prod.preco FROM tbPedido as p
+    SELECT p.*,prod.nomeProd, p.qtdProd, prod.imgProd, prod.preco, c.numMesa FROM tbPedido as p
     join tbproduto as prod on p.fkProd = prod.idProd
     join tbcomanda as c on p.fkComanda = c.idComanda
     where p.fkComanda = vcomanda and c.statusComanda = 1;
 END
 $$
-
-
-
-
+drop procedure spPedidosComanda;
+select * from tbpedido;
+call spPedidosComanda(37);
+call spComandaDeliveryS();
+select * from tbCOmanda;
 
 INSERT INTO tbEstado
 	VALUES 
@@ -540,6 +558,8 @@ INSERT INTO tbFormaPag
 		(DEFAULT, 'Vale refeição'),
 		(DEFAULT, 'Dinheiro'),
 		(DEFAULT, 'Pix');
+        
+
      
 INSERT INTO tbPessoa
 	VALUES (DEFAULT, 'Gerente', '(11) 11111-1111', '111.111.111-11', 1);
@@ -651,18 +671,8 @@ select * from tbReserva;
 select * from tbDelivery;
 
 
-CALL spSelectProdutos('1')
-
-CALL spPedidosComanda('5');
-
-
-CALL spSelectProdutos('2')
-
-    CALL spCadastrarPedido(3, "descricao", 3, 5);
+CALL spCadastrarPedido(3, "descricao", 3, 5);
 CALL spCadastrarPedido(1, "descricao", 1, 5);
 CALL spCadastrarPedido(2, "descricao", 2, 5);
 CALL spCadastrarPedido(4, "descricao", 4, 5);
 
-/* Teste */
-
-ALTER USER 'root'@'localhost' IDENTIFIED BY '12345678';
