@@ -1,9 +1,9 @@
 <h1>Sistema Dragon Sushi</h1>
 <br>
 <p>O presente sistema foi desenvolvido para o restaurante japonês Dragon Sushi, utilizando ASP.NET MVC.<br>
-Desenvolvido pela empresa Westen, composta por Gabriel Soares, Guilherme Ferreira, Guilherme Lemes, Gustavo Basilio, Henrique Roncon e Maria Eduarda Gaspar</p>
+Desenvolvido pela empresa Westen, composta por Gabriel Soares, Guilherme Ferreira, Guilherme Lemes, Gustavo Basilio, Henrique Roncon e Maria Eduarda Gaspar.</p>
 <br>
-<p>O banco de dados é local, sendo necessário executar o arquivo "script.sql", localizado na pasta <a href="https://github.com/gasparmaria/SystemDS/blob/main/Database/script.sql">"DataBase"</a>, no MySQL</p>
+<p>O banco de dados é local, sendo necessário executar o arquivo "script.sql", localizado na pasta <a href="https://github.com/gasparmaria/SystemDS/blob/main/Database/script.sql">"DataBase"</a>, no MySQL.</p>
 <br>
 <p>O sistema possui 3 níveis de acesso: Gerente, Funcionário e Usuário.</p>
 <br>
